@@ -59,10 +59,14 @@
   </style>
 </head>
 <body >
-<div class="container mt-5" id="IncidentTypeArea">
+   <div class="text-end mt-3">
+      <a href="ex2.html"><button type="button" class="btn btn-primary px-4">Open Countermeasure Form</button></a>
+    </div>
    <h1>INCIDENT/ACCIDENT/INJURY & ILL HEALTH REPORT</h1>
+   
   <!-- Incident Type Selection -->
   <div class="card shadow">
+   
     <div class="card-header bg-dark text-white card1">
       <h4>Nature of Accident</h4>
     </div>
@@ -84,9 +88,9 @@
           <input class="form-check-input" type="radio" name="incident" id="nearmiss" value="Near Miss">
           <label class="form-check-label" for="nearmiss">Near Miss</label>
         </div>
-     <div class="text-end mt-3">
+      <div class="text-end mt-3">
       <button type="button" class="btn btn-primary px-4" onclick="showDateAndTime(this)">Next</button>
-    </div>
+     </div>
       </form>
     </div>
   </div>
@@ -164,6 +168,7 @@
   <input type="text" class="form-control" id="ShiftLeader" placeholder="Enter Shift Leader Name">
 </div>
  <div class="mb-3">
+          <button type="button" class="btn btn-primary px-4" onclick="showDetails(this)">Next</button>
        
   <label class="form-label">Working location</label>
   <div class="form-check form-check-inline">
@@ -525,7 +530,7 @@
     <div id="whyReasonsContainer" class="mt-3"></div>
   </div>
     <div class="text-end mt-3">
-     <button type="submit" class="btn btn-success" >Submit</button>
+    <button onclick="downloadPDF()" class="btn btn-success mt-4">Download PDF</button>
     </div>
   </div>
 

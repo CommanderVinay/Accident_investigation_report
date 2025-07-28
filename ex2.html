@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countermeasure Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    body {
+      padding: 20px;
+      font-size: 14px;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .table td, .table th {
+      vertical-align: middle;
+    }
+    .photo-box {
+      width: 150px;
+      height: 150px;
+      border: 1px solid #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+    .signature-line {
+      border-top: 1px solid #000;
+      margin-top: 30px;
+      height: 2em;
+    }
+     .preview-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .preview-box {
+      width: 100%;
+      max-width: 300px;
+      flex: 1 1 45%;
+      border: 1px solid #ccc;
+      padding: 10px;
+      display: none;
+    }
+
+    .preview-box img,
+    .preview-box iframe {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: contain;
+      display: block;
+    }
+    table thead tr th {
+      background: #6fa3fe !important;
+      border-radius: 10px 10px 0px 0px;
+    }
+
+    @media (max-width: 576px) {
+      .preview-box {
+        flex: 1 1 100%;
+        border: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="mainArea">
+    <h4 class="mb-3">Countermeasure Form</h4>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Countermeasure</th>
+          <th>Action</th>
+          <th>Responsibility</th>
+          <th>Status / Target Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Countermeasure 2 (Permanent)</strong><br></td>
+          <td><textarea class="form-control" rows="3" placeholder="Describe responsibility..."></textarea></td>
+          <td><input type="text" class="form-control" placeholder="Department / Person"></td>
+          <td><input type="text" class="form-control" placeholder="Status or Target Date"></td>
+        </tr>
+        <tr>
+          <td><strong>Countermeasure 3 (Horizontal Deployment)</strong><br></td>
+          <td><textarea class="form-control" rows="3"></textarea></td>
+          <td><input type="text" class="form-control"></td>
+          <td><input type="text" class="form-control"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="container mt-5">
+    <h3 class="mb-4">Upload Before & After Documents</h3>
+    <form>
+      <div class="mb-3">
+        <label for="beforeDoc" class="form-label fw-bold">Upload Before Document</label>
+        <input type="file" class="form-control" id="beforeDoc" accept="image/*,application/pdf" onchange="previewFile(this, 'beforePreview')">
+      </div>
+      <div class="mb-3">
+        <label for="afterDoc" class="form-label fw-bold">Upload After Document</label>
+        <input type="file" class="form-control" id="afterDoc" accept="image/*,application/pdf" onchange="previewFile(this, 'afterPreview')">
+      </div>
+
+      <div class="preview-container">
+        <div class="preview-box">
+          <label class="form-label fw-bold">Before Document Preview</label>
+          <div id="beforePreview"></div>
+        </div>
+        <div class="preview-box">
+          <label class="form-label fw-bold">After Document Preview</label>
+          <div id="afterPreview"></div>
+        </div>
+      </div>
+
+    </form>
+
+    <div class="mb-3">
+      <label class="form-label">Whether SOP has been revised after injury?</label><br>
+      <div class="form-check form-check-inline">
+        <input type="radio" name="sopRevised" class="form-check-input" id="sopYes">
+        <label class="form-check-label" for="sopYes">Yes</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input type="radio" name="sopRevised" class="form-check-input" id="sopNo">
+        <label class="form-check-label" for="sopNo">No</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Whether on-job re-training given after injury?</label><br>
+      <div class="form-check form-check-inline">
+        <input type="radio" name="retraining" class="form-check-input" id="retrainYes">
+        <label class="form-check-label" for="retrainYes">Yes</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input type="radio" name="retraining" class="form-check-input" id="retrainNo">
+        <label class="form-check-label" for="retrainNo">No</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Cause of injury / precaution included in HIRA?</label><br>
+      <div class="form-check form-check-inline">
+        <input type="radio" name="causeIncluded" class="form-check-input" id="causeYes">
+        <label class="form-check-label" for="causeYes">Yes</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input type="radio" name="causeIncluded" class="form-check-input" id="causeNo">
+        <label class="form-check-label" for="causeNo">No</label>
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">If not, then implemented in HIRA?</label><br>
+      <div class="form-check form-check-inline">
+        <input type="radio" name="implementedHira" class="form-check-input" id="implYes">
+        <label class="form-check-label" for="implYes">Yes</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input type="radio" name="implementedHira" class="form-check-input" id="implNo">
+        <label class="form-check-label" for="implNo">No</label>
+      </div>
+    </div>
+
+    <h5 class="mt-4">Signatures</h5>
+    <div class="row">
+      <div class="col-md-2">
+        <label>Prepared by</label>
+        <div class="signature-line"></div>
+      </div>
+      <div class="col-md-2">
+        <label>HOD</label>
+        <div class="signature-line"></div>
+      </div>
+      <div class="col-md-2">
+        <label>Safety Officer</label>
+        <div class="signature-line"></div>
+      </div>
+      <div class="col-md-2">
+        <label>Head HR</label>
+        <div class="signature-line"></div>
+      </div>
+      <div class="col-md-2">
+        <label>Plant Head</label>
+        <div class="signature-line"></div>
+      </div>
+    </div>
+     <div class="text-end mt-3">
+     <button type="submit" class="btn btn-success" >Submit</button>
+    </div>
+  </div>
+
+  <script>
+    function previewFile(input, previewId) {
+      const previewDiv = document.getElementById(previewId);
+      previewDiv.innerHTML = "";
+
+      // Show the correct preview box
+      if (previewId === 'beforePreview') {
+        previewDiv.closest('.preview-box').style.display = 'block';
+      } else if (previewId === 'afterPreview') {
+        previewDiv.closest('.preview-box').style.display = 'block';
+      }
+
+      const file = input.files[0];
+      if (file) {
+        const fileURL = URL.createObjectURL(file);
+        const fileType = file.type;
+
+        if (fileType.startsWith("image/")) {
+          const img = document.createElement("img");
+          img.src = fileURL;
+          previewDiv.appendChild(img);
+        } else if (fileType === "application/pdf") {
+          const iframe = document.createElement("iframe");
+          iframe.src = fileURL;
+          iframe.width = "100%";
+          iframe.height = "200px";
+          previewDiv.appendChild(iframe);
+        } else {
+          previewDiv.textContent = "Unsupported file format";
+        }
+      }
+    }
+  </script>
+   <script>
+    document.getElementById('userForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const name = this.name.value;
+      const email = this.email.value;
+      const message = this.message.value;
+
+      // Populate preview
+      document.getElementById('prevName').innerText = name;
+      document.getElementById('prevEmail').innerText = email;
+      document.getElementById('prevMessage').innerText = message;
+
+      // Show preview section
+      document.getElementById('previewSection').classList.remove('d-none');
+
+      // Optionally hide the form
+      this.classList.add('d-none');
+    });
+
+    function downloadPDF() {
+      const element = document.getElementById('mainArea');
+      html2pdf().from(element).save('form-preview.pdf');
+    }
+  </script>
+</body>
+</html>
