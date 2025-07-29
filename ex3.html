@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bootstrap Form to PDF</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    .no-print {
+      display: block;
+    }
+  </style>
+</head>
+<body class="p-4">
+
+  <!-- Form Section -->
+  <div class="container">
+    <form id="userForm" class="border p-4 rounded shadow-sm bg-light">
+      <h3 class="mb-3">User Form</h3>
+
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" name="name" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" name="email" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Message</label>
+        <textarea name="message" class="form-control" rows="3" required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+    <!-- Preview Section -->
+    <!-- Preview Section -->
+<div id="previewSection" class="border p-4 mt-4 bg-white rounded shadow-sm d-none">
+  <h3 class="mb-3">Preview Details</h3>
+  <p><strong>Name:</strong> <span id="prevName"></span></p>
+  <p><strong>Email:</strong> <span id="prevEmail"></span></p>
+  <p><strong>Message:</strong> <span id="prevMessage"></span></p>
+
+  <hr>
+  <p><strong>Signature:</strong></p>
+  <div style="height: 50px; border-bottom: 1px solid #000; width: 200px;"></div>
+
+  <button id="downloadBtn" onclick="downloadPDF()" class="btn btn-success mt-4 no-print">Download PDF</button>
+  <button id="goBackBtn" onclick="goBackToForm()" class="btn btn-secondary mt-2 no-print">Back to Form</button>
+</div>
+
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // Handle form submission
+    document.getElementById('userForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = this.name.value.trim();
+      const email = this.email.value.trim();
+      const message = this.message.value.trim();
+
+      if (!name || !email || !message) {
+        alert("Please fill out all fields.");
+        return;
+      }
+
+      // Populate the preview
+      document.getElementById('prevName').innerText = name;
+      document.getElementById('prevEmail').innerText = email;
+      document.getElementById('prevMessage').innerText = message;
+
+      // Show preview and hide form
+      document.getElementById('previewSection').classList.remove('d-none');
+      this.classList.add('d-none');
+    });
+
+    // PDF download with hiding the button during export
+    function downloadPDF() {
+      const element = document.getElementById('previewSection');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const goBackBtn = document.getElementById('goBackBtn')
+
+      // Hide the button
+      downloadBtn.style.display = 'none';
+      goBackBtn.style.display = 'none';
+
+
+      // Generate PDF
+      html2pdf()
+        .from(element)
+        .set({
+          margin: 10,
+          filename: 'form-preview.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        })
+        .save()
+        .then(() => {
+          // Show button again after export
+          downloadBtn.style.display = 'block';
+          goBackBtn.style.display = 'block'
+        });
+    }
+
+    // back button 
+    function goBackToForm() {
+  document.getElementById('previewSection').classList.add('d-none');
+  document.getElementById('userForm').classList.remove('d-none');
+}
+  </script>
+
+</body>
+</html>
