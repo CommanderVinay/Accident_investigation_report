@@ -56,10 +56,10 @@
       object-fit: contain;
       display: block;
     }
-    table thead tr th {
+    /* table thead tr th {
       background: #6fa3fe !important;
       border-radius: 10px 10px 0px 0px;
-    }
+    } */
 
     @media (max-width: 576px) {
       .preview-box {
@@ -70,35 +70,48 @@
   </style>
 </head>
 <body>
-  <div class="container" id="mainArea">
-    <h4 class="mb-3">Countermeasure Form</h4>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Countermeasure</th>
-          <th>Action</th>
-          <th>Responsibility</th>
-          <th>Status / Target Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Countermeasure 2 (Permanent)</strong><br></td>
-          <td><textarea class="form-control" rows="3" placeholder="Describe responsibility..."></textarea></td>
-          <td><input type="text" class="form-control" placeholder="Department / Person"></td>
-          <td><input type="text" class="form-control" placeholder="Status or Target Date"></td>
-        </tr>
-        <tr>
-          <td><strong>Countermeasure 3 (Horizontal Deployment)</strong><br></td>
-          <td><textarea class="form-control" rows="3"></textarea></td>
-          <td><input type="text" class="form-control"></td>
-          <td><input type="text" class="form-control"></td>
-        </tr>
-      </tbody>
-    </table>
+<div class="container mt-5">
+   <div class="card shadow">
+    <div class="card-header bg-dark text-white card1">
+      <h4>Countermeasure Form</h4>
+    </div>
+    <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Countermeasure</th>
+                <th>Action</th>
+                <th>Responsibility</th>
+                <th>Status / Target Date</th>
+              </tr>
+           </thead>
+         <tbody>
+            <tr>
+              <td><strong>Countermeasure 2 (Permanent)</strong><br></td>
+              <td><textarea class="form-control" rows="3" placeholder="Describe responsibility..."></textarea></td>
+              <td><input type="text" class="form-control" placeholder="Department / Person"></td>
+              <td><input type="text" class="form-control" placeholder="Status or Target Date"></td>
+            </tr>
+            <tr>
+              <td><strong>Countermeasure 3 (Horizontal Deployment)</strong><br></td>
+              <td><textarea class="form-control" rows="3"></textarea></td>
+              <td><input type="text" class="form-control"></td>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+          </tbody>
+         </table>
+         
+    </div>
+  </div>
+</div>
+      
 
-    <div class="container mt-5">
+<div class="container mt-5">
+  <div class="card shadow">
+    <div class="card-header bg-dark text-white card1">
     <h3 class="mb-4">Upload Before & After Documents</h3>
+    </div>
+    <div class="card-body">
     <form>
       <div class="mb-3">
         <label for="beforeDoc" class="form-label fw-bold">Upload Before Document</label>
@@ -107,8 +120,7 @@
       <div class="mb-3">
         <label for="afterDoc" class="form-label fw-bold">Upload After Document</label>
         <input type="file" class="form-control" id="afterDoc" accept="image/*,application/pdf" onchange="previewFile(this, 'afterPreview')">
-      </div>
-
+   
       <div class="preview-container">
         <div class="preview-box">
           <label class="form-label fw-bold">Before Document Preview</label>
@@ -119,9 +131,19 @@
           <div id="afterPreview"></div>
         </div>
       </div>
-
     </form>
 
+       </div>
+    </div>
+  </div>
+
+
+  <div class="container mt-5">
+   <div class="card shadow">
+    <div class="card-header bg-dark text-white card1">
+      <h4>Countermeasure Form</h4>
+    </div>
+    <div class="card-body">
     <div class="mb-3">
       <label class="form-label">Whether SOP has been revised after injury?</label><br>
       <div class="form-check form-check-inline">
@@ -169,6 +191,11 @@
         <label class="form-check-label" for="implNo">No</label>
       </div>
     </div>
+
+  </div>
+</div>
+</div>
+
 
     <h5 class="mt-4">Signatures</h5>
     <div class="row">
