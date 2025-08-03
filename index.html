@@ -56,489 +56,618 @@
     
   
    
+  </style><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Accident Report Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Michroma&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+        body{
+         font-family: "Nunito", sans-serif;
+        font-optical-sizing: auto;
+        font-style: normal;
+        color: rgb(89, 97, 104) !important;
+      }
+       h1{
+        text-align: center;
+        text-shadow: 4px 4px 2px rgba(255, 255, 255, 0.6);
+        margin: 40px !important;
+      }
+     
+      /* #incidentForm{
+        text-align: center;
+      }
+   
+      #dateAndTimeSec{
+        display: none;
+      }
+      #employeeDetails{
+        display: none;
+      }
+      #accidentTypeboxArea{
+        display: none;
+      }
+      #AffectedBodyPartArea{
+        display: none;
+      }
+      #ppeArea{
+        display: none;
+      }
+      #medicalTreatmentArea{
+        display: none;
+      }
+      #ITCActionArea{
+        display: none;
+      }
+      #why5AnalysisArea{
+        display: none;
+      } */
+
+
+     
+     
+
+    
+  
+   
   </style>
 </head>
 <body >
-   <div class="text-end mt-3">
-      <a href="ex4.html"><button type="button" class="btn btn-primary px-4">Open Countermeasure Form</button></a>
+  <div class="container mt-5" id="mainFormSection">
+    <div class="text-end mt-3">
+        <a href="CountermeasureForm.html"><button type="button" class="btn btn-primary px-4">Open Countermeasure Form</button></a>
     </div>
-   <h1>INCIDENT/ACCIDENT/INJURY & ILL HEALTH REPORT</h1>
-   
-  <!-- Incident Type Selection -->
-  <div class="card shadow">
-   
-    <div class="card-header bg-dark text-white card1">
-      <h4>Nature of Accident</h4>
-    </div>
-    <div class="card-body">
-      <form id="incidentForm">
-        <div class="form-check mb-2 form-check-inline">
-          <input class="form-check-input" type="radio" name="incident" id="lti" value="Lost Time Injury">
-          <label class="form-check-label" for="lti">Lost Time Injury (LTI)</label>
-        </div>
-        <div class="form-check mb-2 form-check-inline">
-          <input class="form-check-input" type="radio" name="incident" id="mi" value="Minor Injury">
-          <label class="form-check-label" for="mi">Minor Injury (MI)</label>
-        </div>
-        <div class="form-check mb-2 form-check-inline">
-          <input class="form-check-input" type="radio" name="incident" id="firstaid" value="First Aid">
-          <label class="form-check-label" for="firstaid">First Aid</label>
-        </div>
-        <div class="form-check mb-3 form-check-inline" >
-          <input class="form-check-input" type="radio" name="incident" id="nearmiss" value="Near Miss">
-          <label class="form-check-label" for="nearmiss">Near Miss</label>
-        </div>
-      <div class="text-end mt-3">
-      <button type="button" class="btn btn-primary px-4" onclick="showDateAndTime(this)">Next</button>
-     </div>
-      </form>
-    </div>
-  </div>
-
-  <!-- incident date and time -->
-
-<div class="card shadow mt-4 " id="dateAndTimeSec">
-  <div class="card-header bg-secondary text-white">
-      <h4>Date & Time</h4>
-    </div>
-    <div class="card-body">
-  <div class="row">
-   <div class="col-md-6 ">
-    <label for="date" class="form-label">Date of Incident <span class="text-danger">*</span></label>
-    <input type="date" class="form-control" id="dateInput" required>
-   </div>
-   <div class="col-md-6">
-    <label for="time" class="form-label">Time of Incident <span class="text-danger">*</span></label>
-    <input type="time" class="form-control" id="timeInput" required>
-   </div>
-   <div class="text-end mt-3">
-      <button type="button" class="btn btn-primary px-4" onclick="showDetails(this)">Next</button>
-    </div>
-   
-   </div>
-  </div>
-  </div>
-
-
-  <!-- Employee Details Section -->
-  <div class="card shadow mt-4" id="employeeDetails">
-    <div class="card-header bg-secondary text-white">
-      <h4>Employee Personal Details</h4>
-    </div>
-    <div class="card-body">
-      <form>
-        <input type="hidden" id="incidentType" name="incidentType">
-<div class="mb-3">
-  <label for="name" class="form-label">Employee Name <span class="text-danger">*</span></label>
-  <input type="text" class="form-control" id="name" placeholder="Enter employee name" required>
-</div>
-
-<div class="mb-3">
-  <label for="empId" class="form-label">Employee ID <span class="text-danger">*</span></label>
-  <input type="text" class="form-control" id="empId" placeholder="Enter  employee ID" required>
-</div>
-<!-- Gender -->
-<div class="mb-3">
-  <label class="form-label" >Gender</label><br>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
-    <label class="form-check-label" for="male">Male</label>
-  </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
-    <label class="form-check-label" for="female">Female</label>
-  </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="gender" id="other" value="Other">
-    <label class="form-check-label" for="other">Other</label>
-  </div>
-</div>
-
- <div class="mb-3">
-  <label for="department" class="form-label">Department <span class="text-danger">*</span></label>
-  <input type="text" class="form-control" id="empDepartment" placeholder=" Enter name" required>
-</div>
-
-<div class="mb-3">
-  <label for="contact" class="form-label">Contract Name <span class="text-danger">*</span></label>
-  <input type="text" class="form-control" id="contactName" placeholder="Enter Contact Name" required>
-</div>
-<div class="mb-3">
-  <label for="shiftleader" class="form-label">Shift Leader</label>
-  <input type="text" class="form-control" id="ShiftLeader" placeholder="Enter Shift Leader Name">
-</div>
- <div class="mb-3">
-          <button type="button" class="btn btn-primary px-4" onclick="showDetails(this)">Next</button>
+    <h1>INCIDENT/ACCIDENT/INJURY & ILL HEALTH REPORT</h1>
+    <!-- Incident Type Selection -->
+    <div class="card shadow">
+      <div class="card-header bg-dark text-white card1">
+        <h4>Nature of Accident</h4>
+      </div>
+      <div class="card-body">
+        <form  method="POST" action="submit.php">
+          <div class="form-check mb-2 form-check-inline">
+            <input class="form-check-input" type="radio" name="incident" id="lti" value="Lost Time Injury">
+            <label class="form-check-label" for="lti">Lost Time Injury (LTI)</label>
+          </div>
+          <div class="form-check mb-2 form-check-inline">
+            <input class="form-check-input" type="radio" name="incident" id="mi" value="Minor Injury">
+            <label class="form-check-label" for="mi">Minor Injury (MI)</label>
+          </div>
+          <div class="form-check mb-2 form-check-inline">
+            <input class="form-check-input" type="radio" name="incident" id="firstaid" value="First Aid">
+            <label class="form-check-label" for="firstaid">First Aid</label>
+          </div>
+          <div class="form-check mb-3 form-check-inline" >
+            <input class="form-check-input" type="radio" name="incident" id="nearmiss" value="Near Miss">
+            <label class="form-check-label" for="nearmiss">Near Miss</label>
+          </div>
+        <div class="text-end mt-3">
+        <button type="button" class="btn btn-primary px-4" onclick="showDateAndTime(this)">Next</button>
+      </div>
        
-  <label class="form-label">Working location</label>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="plant" id="plant1" value="Plant One" onchange="updateLocation(this.value)">
-    <label class="form-check-label" for="plant1">Plant One</label>
-  </div>
-  <div class="form-check form-check-inline">
-    <input class="form-check-input" type="radio" name="plant" id="plant2" value="Plant Two" onchange="updateLocation(this.value)">
-    <label class="form-check-label" for="plant2">Plant Two</label>
-  </div>
-</div>
-
-<!-- Department Dropdown -->
-   <div class="mb-3" id="locationGroup">
-     <label for="department" class="form-label">Incident Location</label>
-       <select class="form-select" id="location">
-       <option selected disabled>Select location</option>
-     </select>
-   </div>
-   <div class="mb-3" id="otherlocationGroup" style="display: none;">
-   <label for="otherDepartment" class="form-label">Specify the Location</label>
-     <input type="text" class="form-control" id="otherDepartment" placeholder="Enter the incident location">
-   </div>
-<div class="mb-3">
-  <label for="machine" class="form-label">Machine </label>
-  <input type="text" class="form-control" id="machine" placeholder="Enter machine Name" >
-</div>
-<div class="mb-3">
-  <label for="Manager" class="form-label">Manager </label>
-  <input type="text" class="form-control" id="Manager" placeholder="Enter Manager Name" >
-</div>   
-
-        <!-- Plant Selection -->
-        
-  <div class="mb-3">
-  <label for="shift" class="form-label">Shift </label>
-  <select class="form-select" id="shift" >
-    <option selected disabled>Select shift</option>
-    <option value="General">General</option>
-    <option value="A">A</option>
-    <option value="B">B</option>
-    <option value="C">C</option>
-  </select>
- <div class="text-end mt-3">
-      <button type="button" class="btn btn-primary px-4" onclick="showAccidentType(this)">Next</button>
-    </div>
-</div>
-</div>
-</div>
-
-  <!-- incident date and time -->
-
-<div class="card shadow mt-4 " id="accidentTypeboxArea">
-  <div class="card-header bg-secondary text-white">
-      <h4>Type of Accident</h4>
-    </div>
-    <div class="card-body">
-  <div class="row">
-   <div class="col-md-12 ">
-    <label for="date" class="form-label">Select the accident type</label>
-    </div>
-    <div class="row">
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Biological Exposure</label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Electrical Shock</label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Abrasion</label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Suffocation</label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Chemical Exposure</label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Chemical Spill</label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Impulse Noise</label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Crush/Impact/Compress</label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Crush/Impact/Compress</label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Biological Spill </label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Food poisoning </label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Impulse Noise </label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Crush/Impact/Compress </label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Arson </label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Fall/Flying/Falling </label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Heat Illness </label>
-   </div>
-   <div class=" mb-2 form-check-inline col-3">
-          <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-          <label class="form-check-label" for="">Pinch </label>
-   </div>
-   <div class="col-md-4 d-flex align-items-center mb-2">
-          <input type="radio" class="form-check-input me-2" name="accidentType" value="Fire" onclick="showFireSection()">
-          <label class="form-check-label">Fire</label>
-        </div>
-
-        <div class="col-md-4 d-flex align-items-center mb-2">
-          <input type="radio" class="form-check-input me-2" name="accidentType" value="Other" onclick="showOtherComment()">
-          <label class="form-check-label">Other</label>
-        </div>
-
       </div>
     </div>
 
 
-    <!-- Fire Class Section -->
-<div id="fireClassSection" class="mt-4 p-3 border rounded bg-light" style="display: none;">
-  <label class="form-label fw-bold mb-3">Which class of fire?</label>
+    <!-- incident date and time -->
 
-  <div class="row">
-    <div class="col-md-6 mb-2">
-      <input type="radio" class="form-check-input me-2" name="accidentType" value="A" id="classA">
-      <label for="classA" class="form-check-label">
-        <strong>Class A</strong> – Fires involving solid materials such as <em>wood, paper or textiles</em>
-      </label>
+  <div class="card shadow mt-4 " id="dateAndTimeSec">
+    <div class="card-header bg-secondary text-white">
+        <h4>Date & Time</h4>
+      </div>
+      <div class="card-body">
+    <div class="row">
+    <div class="col-md-6 ">
+      <label for="date" class="form-label">Date of Incident <span class="text-danger">*</span></label>
+      <input type="date" class="form-control" id="dateInput" name="date" required>
+    </div>
+    <div class="col-md-6">
+      <label for="time" class="form-label">Time of Incident <span class="text-danger">*</span></label>
+      <input type="time" class="form-control" id="timeInput" name="time" required>
+    </div>
+    <div class="text-end mt-3">
+        <button type="button" class="btn btn-primary px-4" onclick="showDetails(this)">Next</button>
+      </div>
+    
+    </div>
+    </div>
     </div>
 
-    <div class="col-md-6 mb-2">
-      <input type="radio" class="form-check-input me-2" name="accidentType" value="B" id="classB">
-      <label for="classB" class="form-check-label">
-        <strong>Class B</strong> – Fires involving flammable liquids such as <em>petrol, diesel or oils</em>
-      </label>
-    </div>
 
-    <div class="col-md-6 mb-2">
-      <input type="radio" class="form-check-input me-2" name="accidentType" value="C" id="classC">
-      <label for="classC" class="form-check-label">
-        <strong>Class C</strong> – Fires involving <em>gases</em>
-      </label>
-    </div>
+    <!-- Employee Details Section -->
+    <div class="card shadow mt-4" id="employeeDetails">
+    <!-- <div class="card shadow mt-4"> -->
+      <div class="card-header bg-secondary text-white">
+        <h4>Employee Personal Details</h4>
+      </div>
+      
+      <div class="card-body">
+        <form  method="POST" action="submit.php">
+          <input type="hidden" id="incidentType" name="incidentType">
+          <div class="mb-3">
+            <label for="name" class="form-label">Employee Name <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="name" name="name" placeholder="Enter employee name" required>
+      </div>
 
-    <div class="col-md-6 mb-2">
-      <input type="radio" class="form-check-input me-2" name="accidentType" value="D" id="classD">
-      <label for="classD" class="form-check-label">
-        <strong>Class D</strong> – Fires involving <em>metals</em>
-      </label>
-    </div>
+      <div class="mb-3">
+        <label for="empId" class="form-label">Employee ID <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="empId" name="empid" placeholder="Enter employee ID" required>
+      </div>
+     
+     
+  <!-- Gender -->
+      <div class="mb-3">
+        <label class="form-label" >Gender</label><br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
+          <label class="form-check-label" for="male">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+          <label class="form-check-label" for="female">Female</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" id="other" value="Other">
+          <label class="form-check-label" for="other">Other</label>
+        </div>
+      </div>
 
-    <div class="col-md-6 mb-2">
-      <input type="radio" class="form-check-input me-2" name="accidentType" value="E" id="classE">
-      <label for="classE" class="form-check-label">
-        <strong>Class E</strong> – Fires involving <em>live electrical apparatus</em>
-      </label>
+      <div class="mb-3">
+        <label for="department" class="form-label">Department <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="empDepartment" name="department" placeholder="Enter name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="contact" class="form-label">Contract Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="contactName" name="contact_name" placeholder="Enter Contact Name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="shiftleader" class="form-label">Shift Leader</label>
+        <input type="text" class="form-control" id="ShiftLeader" name="shift_leader" placeholder="Enter Shift Leader Name">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Working location</label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="plant" id="plant1" value="Plant One" onchange="updateLocation(this.value)">
+          <label class="form-check-label" for="plant1">Plant One</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="plant" id="plant2" value="Plant Two" onchange="updateLocation(this.value)">
+          <label class="form-check-label" for="plant2">Plant Two</label>
+        </div>
+      </div>
+
+  <!-- Department Dropdown -->
+      <div class="mb-3" id="locationGroup" style="display: none;">
+        <label for="department" class="form-label">Incident Location</label>
+          <select class="form-select" id="location" name="incident_location">
+            <option selected disabled>Select location</option>
+          </select>
+      </div>
+
+      <div class="mb-3" id="otherlocationGroup" style="display: none;">
+      <label for="otherDepartment" class="form-label">Specify the Location</label>
+        <input type="text" class="form-control" id="otherDepartment" name="other_location" placeholder="Enter the incident location">
+      </div>
+
+      <div class="mb-3">
+        <label for="machine" class="form-label">Machine </label>
+        <input type="text" class="form-control" id="machine" name="machine" placeholder="Enter machine Name" >
+      </div>
+
+      <div class="mb-3">
+        <label for="Manager" class="form-label">Manager </label>
+        <input type="text" class="form-control" id="Manager" name="manager" placeholder="Enter Manager Name" >
+      </div>   
+
+          <!-- Plant Selection -->
+          
+      <div class="mb-3">
+        <label for="shift" class="form-label">Shift </label>
+        <select class="form-select" id="shift" name="shift" >
+          <option selected disabled>Select shift</option>
+          <option value="General">General</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+        <div class="text-end mt-3">
+            <button type="button" class="btn btn-primary px-4" onclick="showAccidentType(this)">Next</button>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<!-- Other Comment Section -->
-<div id="otherCommentSection" class="mt-4 p-3 border rounded bg-light" style="display: none;">
-  <label for="otherComment" class="form-label fw-bold">Please specify the accident type:</label>
-  <textarea id="otherComment" class="form-control" rows="3" placeholder="Describe the accident..."></textarea>
-</div>
 
-  <div class="text-end mt-3">
-      <button type="button" class="btn btn-primary px-4" onclick="showAffectedBodyPartArea(this)">Next</button>
-  </div>
-  </div>
-</div>
+    <!-- incident date and time -->
 
-<!-- AffectedBodyPart -->
+  <div class="card shadow mt-4 " id="accidentTypeboxArea">
+    <div class="card-header bg-secondary text-white">
+        <h4>Type of Accident</h4>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+          <div class="col-md-12 ">
+            <label for="date" class="form-label">Select the accident type</label>
+          </div>
+
+        <div class="row">
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Biological Exposure</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Electrical Shock</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Abrasion</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Suffocation</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Chemical Exposure</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Chemical Spill</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Impulse Noise</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Crush/Impact/Compress</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Crush/Impact/Compress</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Biological Spill </label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Food poisoning </label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Impulse Noise </label>
+          </div>
+          
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Crush/Impact/Compress </label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Arson </label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Fall/Flying/Falling </label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Heat Illness </label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Pinch </label>
+          </div>
+
+          <div class="col-md-4 d-flex align-items-center mb-2">
+              <input type="radio" class="form-check-input me-2" name="accidentType" value="Fire" onclick="showFireSection()">
+              <label class="form-check-label">Fire</label>
+          </div>
+
+          <div class="col-md-4 d-flex align-items-center mb-2">
+              <input type="radio" class="form-check-input me-2" name="accidentType" value="Other" onclick="showOtherComment()">
+              <label class="form-check-label">Other</label>
+          </div>
+        </div>
+      </div>
+
+
+        <!-- Fire Class Section -->
+      <div id="fireClassSection" class="mt-4 p-3 border rounded bg-light" style="display: none;">
+        <label class="form-label fw-bold mb-3">Which class of fire?</label>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <input type="radio" class="form-check-input me-2" name="fireClass" value="A" id="classA">
+            <label for="classA" class="form-check-label">
+              <strong>Class A</strong> – Fires involving solid materials such as <em>wood, paper or textiles</em>
+            </label>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <input type="radio" class="form-check-input me-2" name="fireClass" value="B" id="classB">
+            <label for="classB" class="form-check-label">
+              <strong>Class B</strong> – Fires involving flammable liquids such as <em>petrol, diesel or oils</em>
+            </label>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <input type="radio" class="form-check-input me-2" name="fireClass" value="C" id="classC">
+            <label for="classC" class="form-check-label">
+              <strong>Class C</strong> – Fires involving <em>gases</em>
+            </label>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <input type="radio" class="form-check-input me-2" name="fireClass" value="D" id="classD">
+            <label for="classD" class="form-check-label">
+              <strong>Class D</strong> – Fires involving <em>metals</em>
+            </label>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <input type="radio" class="form-check-input me-2" name="fireClass" value="E" id="classE">
+            <label for="classE" class="form-check-label">
+              <strong>Class E</strong> – Fires involving <em>live electrical apparatus</em>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    <!-- Other Comment Section -->
+      <div id="otherCommentSection" class="mt-4 p-3 border rounded bg-light" style="display: none;">
+        <label for="otherComment" class="form-label fw-bold">Please specify the accident type:</label>
+        <textarea id="otherComment" class="form-control" name="other_comment" rows="3" placeholder="Describe the accident..."></textarea>
+      </div>
+
+      <div class="text-end mt-3">
+        
+          <button type="button" class="btn btn-primary px-4" onclick="showAffectedBodyPartArea(this)">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AffectedBodyPart -->
 
   <div class="card shadow mt-4 " id="AffectedBodyPartArea">
-  <div class="card-header bg-secondary text-white">
-      <h4>Affected Body Part</h4>
-    </div>
-    <div class="card-body">
-  <div class="row">
-  <div class="mb-3">
-  <label class="form-label">Select Affected Body Part <span class="text-danger">*</span></label>
-  <div class="row">
-    <div class="col-md-3">
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Head" id="bpHead"><label class="form-check-label" for="bpHead">Head</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Eye" id="bpEye"><label class="form-check-label" for="bpEye">Eye</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Ear" id="bpEar"><label class="form-check-label" for="bpEar">Ear</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Chin" id="bpChin"><label class="form-check-label" for="bpChin">Chin</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Nose" id="bpNose"><label class="form-check-label" for="bpNose">Nose</label></div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Shoulder" id="bpShoulder"><label class="form-check-label" for="bpShoulder">Shoulder</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Stomach" id="bpStomach"><label class="form-check-label" for="bpStomach">Stomach</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Chest" id="bpChest"><label class="form-check-label" for="bpChest">Chest</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Neck" id="bpNeck"><label class="form-check-label" for="bpNeck">Neck</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Lips" id="bpLips"><label class="form-check-label" for="bpLips">Lips</label></div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Arm" id="bpArm"><label class="form-check-label" for="bpArm">Arm</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Hand" id="bpHand"><label class="form-check-label" for="bpHand">Hand</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Finger" id="bpFinger"><label class="form-check-label" for="bpFinger">Finger</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Leg" id="bpLeg"><label class="form-check-label" for="bpLeg">Leg</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Ankle" id="bpAnkle"><label class="form-check-label" for="bpAnkle">Ankle</label></div>
-    </div>
-
-    <div class="col-md-3">
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Thigh" id="bpThigh"><label class="form-check-label" for="bpThigh">Thigh</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Heel" id="bpHeel"><label class="form-check-label" for="bpHeel">Heel</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Foot" id="bpFoot"><label class="form-check-label" for="bpFoot">Foot</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Toes" id="bpToes"><label class="form-check-label" for="bpToes">Toes</label></div>
-      <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Whole Body" id="bpWhole"><label class="form-check-label" for="bpWhole">Whole Body</label></div>
-    </div>
-     <div class="col-md-3">
-       <div class="form-check">
-        <input class="form-check-input" type="radio" name="bodyPart" value="Other" id="bpOther" onchange="toggleOtherInput()">
-        <label class="form-check-label" for="bpOther">Other</label>
-      </div>
-      <!-- Hidden textbox -->
-      <div id="otherBodyPartGroup" style="display: none; margin-top: 10px; width: 100%;">
-        <input type="text" class="form-control" id="otherBodyPart" placeholder="Specify other body part">
-      </div>
-     </div>
-     <div class="text-end mt-3">
-      <button type="button" class="btn btn-primary px-4" onclick="showppeArea(this)">Next</button>
-    </div>
-     </div>
-     </div>
-    </div>
-   </div>
-  </div>
-
-
- <!--  PPE Details -->
-  <div class="card shadow mt-4 " id="ppeArea">
     <div class="card-header bg-secondary text-white">
-      <h4>PPE’s Details</h4>
-    </div>
-    <div class="card-body">
-      <div class="mb-4">
-         <label class="form-label fw-bold"> Did the PPE is used? <span class="text-danger">*</span></label>
-        <div class="row align-items-start g-3">
-    <!-- YES option -->
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="ppe" id="ppeYes" value="Yes" onchange="togglePpeBox('yes')">
-          <label class="form-check-label" for="ppeYes">Yes</label>
+        <h4>Affected Body Part</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+        <div class="mb-3">
+          <label class="form-label">Select Affected Body Part <span class="text-danger">*</span></label>
+          <div class="row">
+
+            <div class="col-md-3">
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Head" id="bpHead"><label class="form-check-label" for="bpHead">Head</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Eye" id="bpEye"><label class="form-check-label" for="bpEye">Eye</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Ear" id="bpEar"><label class="form-check-label" for="bpEar">Ear</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Chin" id="bpChin"><label class="form-check-label" for="bpChin">Chin</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Nose" id="bpNose"><label class="form-check-label" for="bpNose">Nose</label></div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Shoulder" id="bpShoulder"><label class="form-check-label" for="bpShoulder">Shoulder</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Stomach" id="bpStomach"><label class="form-check-label" for="bpStomach">Stomach</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Chest" id="bpChest"><label class="form-check-label" for="bpChest">Chest</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Neck" id="bpNeck"><label class="form-check-label" for="bpNeck">Neck</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Lips" id="bpLips"><label class="form-check-label" for="bpLips">Lips</label></div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Arm" id="bpArm"><label class="form-check-label" for="bpArm">Arm</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Hand" id="bpHand"><label class="form-check-label" for="bpHand">Hand</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Finger" id="bpFinger"><label class="form-check-label" for="bpFinger">Finger</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Leg" id="bpLeg"><label class="form-check-label" for="bpLeg">Leg</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Ankle" id="bpAnkle"><label class="form-check-label" for="bpAnkle">Ankle</label></div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Thigh" id="bpThigh"><label class="form-check-label" for="bpThigh">Thigh</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Heel" id="bpHeel"><label class="form-check-label" for="bpHeel">Heel</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Foot" id="bpFoot"><label class="form-check-label" for="bpFoot">Foot</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Toes" id="bpToes"><label class="form-check-label" for="bpToes">Toes</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Whole Body" id="bpWhole"><label class="form-check-label" for="bpWhole">Whole Body</label></div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="bodyPart" value="Other" id="bpOther" onchange="toggleOtherInput()">
+                <label class="form-check-label" for="bpOther">Other</label>
+              </div>
+
+            <!-- Hidden textbox -->
+              <div id="otherBodyPartGroup" style="display: none; margin-top: 10px; width: 100%;">
+                <input type="text" class="form-control" id="otherBodyPart" name="other_body_part" placeholder="Specify other body part">
+              </div>
+            </div>
+
+              <div class="text-end mt-3">
+                <button type="button" class="btn btn-primary px-4" onclick="showppeArea(this)">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+  <!--  PPE Details -->
+      <div class="card shadow mt-4 " id="ppeArea">
+        <div class="card-header bg-secondary text-white">
+          <h4>PPE’s Details</h4>
+        </div>
+        <div class="card-body">
+          <div class="mb-4">
+          <label class="form-label fw-bold"> Did the PPE is used? <span class="text-danger">*</span></label>
+            <div class="row align-items-start g-3">
+
+      <!-- YES option -->
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="ppe" id="ppeYes" value="Yes" onchange="togglePpeBox('yes')">
+              <label class="form-check-label" for="ppeYes">Yes</label>
+            </div>
+
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="ppe" id="ppeNo" value="No" onchange="togglePpeBox('no')">
+              <label class="form-check-label" for="ppeNo">No</label>
+            </div>
+
+    <!-- Hidden Input Box -->
+            <div id="ppeInputBox" style="display: none;">
+              <input type="text" class="form-control" id="ppeText" name="ppe_text" placeholder="">
+            </div>
+
+            <div class="text-end mt-3">
+            <button type="button" class="btn btn-primary px-4" onclick="showmedicalTreatmentArea(this)">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+  <!--Medical Treatment -->
+      <div class="card shadow mt-4 " id="medicalTreatmentArea">
+        <div class="card-header bg-secondary text-white">
+            <h4>Medical Treatment</h4>
         </div>
 
-        <div class="form-check mb-2">
-          <input class="form-check-input" type="radio" name="ppe" id="ppeNo" value="No" onchange="togglePpeBox('no')">
-          <label class="form-check-label" for="ppeNo">No</label>
+          <div class="card-body">
+            <div class="mb-4">
+                <label class="form-label fw-bold">Where the medical treatment occure?</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="medicalTreatment" id="treatmentInhouse" value="In House" onchange="toggleHospitalInput()">
+                <label class="form-check-label" for="treatmentInhouse">In House First Aid Center</label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="medicalTreatment" id="treatmentExternal" value="External Hospital" onchange="toggleHospitalInput()">
+                <label class="form-check-label" for="treatmentExternal">External Hospital</label>
+              </div>
+
+              <!-- Hidden by default -->
+              <div id="hospitalDescriptionBox" class="mt-3" style="display: none;">
+                <label for="hospitalDetails" class="form-label">External Hospital Details</label>
+                <textarea class="form-control" id="hospitalDetails" name="hospital_details" rows="3" placeholder="Enter hospital name, treatment received, etc."></textarea>
+              </div>
+              <div class="text-end mt-3">
+                <button type="button" class="btn btn-primary px-4" onclick="showITCActionArea(this)">Next</button>
+              </div>
+            </div>
+          </div>
         </div>
 
-  <!-- Hidden Input Box -->
-        <div id="ppeInputBox" style="display: none;">
-          <input type="text" class="form-control" id="ppeText" placeholder="">
+      <!--  Temporary Containment Action -->
+        <div class="card shadow mt-4 " id="ITCActionArea">
+          <div class="card-header bg-secondary text-white">
+            <h4>Immediate Temporary Containment Action</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="mb-4">
+            <label class="form-label fw-bold"> What are the immediate temporary containment action to prevent same accident</label>
+              <textarea class="form-control" name="containment_action" rows="3" placeholder="Describe actions taken to prevent repeat accident"></textarea>
+            </div>
+            <div class="text-end mt-3">
+                <button type="button" class="btn btn-primary px-4" onclick="showwhy5AnalysisArea(this)">Next</button>
+            </div>
+          </div>
         </div>
 
-      <div class="text-end mt-3">
-      <button type="button" class="btn btn-primary px-4" onclick="showmedicalTreatmentArea(this)">Next</button>
-    </div>
-    </div>
-    </div>
-  </div>
-</div>
+  <!-- 5 why section -->
+        <div class="card shadow mt-4 " id="why5AnalysisArea">
+          <div class="card-header bg-secondary text-white">
+                <h4>5 Why Analysis and Countermeasure</h4>
+          </div>
+          <div class="card-body">
+          <div class="mb-4">
+            <label class="form-label fw-bold"> 5 Why Analysis and Countermeasure to be approved by Head HR/Plant Head</label>
+            <!-- Problem -->
+            <div class="mb-3">
+              <label for="whyProblem" class="form-label">Problem</label>
+              <input type="text" class="form-control" id="whyProblem" name="why_problem" placeholder="Describe the problem">
+            </div>
+            <!-- 5 Why Reasons (static, no script) -->
+            <div class="mb-3">
+              <label class="form-label">Why 1:</label>
+              <input type="text" class="form-control" name="whyReason1" placeholder="Reason 1" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Why 2:</label>
+              <input type="text" class="form-control" name="whyReason2" placeholder="Reason 2" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Why 3:</label>
+              <input type="text" class="form-control" name="whyReason3" placeholder="Reason 3" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Why 4:</label>
+              <input type="text" class="form-control" name="whyReason4" placeholder="Reason 4" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Why 5:</label>
+              <input type="text" class="form-control" name="whyReason5" placeholder="Reason 5" required>
+            </div>
+          </div>
 
+          <div class="text-end mt-3">
+            <button type="submit" onclick="finalSubmit()" class="btn btn-success mt-4">Submit</button>
+          </div>
+           <select name="department" id="">
+        <option value="HR">HR</option>
+      </select>
 
-<!--Medical Treatment -->
-<div class="card shadow mt-4 " id="medicalTreatmentArea">
-   <div class="card-header bg-secondary text-white">
-      <h4>Medical Treatment</h4>
-    </div>
-    <div class="card-body">
-      <div class="mb-4">
-        <label class="form-label fw-bold">Where the medical treatment occure?</label>
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="treatmentInhouse" value="In House">
-        <label class="form-check-label" for="treatmentInhouse">In House First Aid Center</label>
+      <input type="submit" value="Submit Now">
+
+   </form>
+        </div>
       </div>
-
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="treatmentExternal" value="External Hospital" onchange="toggleHospitalInput()">
-        <label class="form-check-label" for="treatmentExternal">External Hospital</label>
-      </div>
-
-      <!-- Hidden by default -->
-      <div id="hospitalDescriptionBox" class="mt-3" style="display: none;">
-        <label for="hospitalDetails" class="form-label">External Hospital Details</label>
-        <textarea class="form-control" id="hospitalDetails" rows="3" placeholder="Enter hospital name, treatment received, etc."></textarea>
-      </div>
-      <div class="text-end mt-3">
-        <button type="button" class="btn btn-primary px-4" onclick="showITCActionArea(this)">Next</button>
-      </div>
-      </div>
-    </div>
-  </div>
-
-
-<!--  Temporary Containment Action -->
-  
-  <div class="card shadow mt-4 " id="ITCActionArea">
-  <div class="card-header bg-secondary text-white">
-      <h4>Immediate Temporary Containment Action</h4>
-    </div>
-    <div class="card-body">
-  <div class="mb-4">
-   <label class="form-label fw-bold"> What are the immediate temporary containment action to prevent same accident</label>
-    <textarea class="form-control" rows="3" placeholder="Describe actions taken to prevent repeat accident"></textarea>
-  </div>
-   <div class="text-end mt-3">
-      <button type="button" class="btn btn-primary px-4" onclick="showwhy5AnalysisArea(this)">Next</button>
-    </div>
- </div>
-</div>
-
-
-
-<!-- 5 why section -->
-<div class="card shadow mt-4 " id="why5AnalysisArea">
-  <div class="card-header bg-secondary text-white">
-      <h4>5 Why Analysis and Countermeasure</h4>
-    </div>
-    <div class="card-body">
-<div class="mb-4">
-  <label class="form-label fw-bold"> 5 Why Analysis and Countermeasure to be approved by Head HR/Plant Head</label>
-  <!-- Problem -->
-  <div class="mb-3">
-    <label for="whyProblem" class="form-label">Problem</label>
-    <input type="text" class="form-control" id="whyProblem" placeholder="Describe the problem">
-  </div>
-  <!-- Add Reason Button -->
-    <button type="button" class="btn btn-outline-primary" onclick="addWhyReason()">Add Reason</button>
-    <div id="whyReasonsContainer" class="mt-3"></div>
-  </div>
-    <div class="text-end mt-3">
-    <button onclick="downloadPDF()" class="btn btn-success mt-4">Download PDF</button>
-    </div>
-  </div>
-
+      
 <!-- last main div close -->
-</div>
-</div>
+  </div>
 
 
+<div class="container mt-5" id="previewSection" style="display:none;">
+  <div class="card shadow">
+    <div class="card-header bg-success text-white">
+      <h4>Preview of Your Submission</h4>
+    </div>
+    <div class="card-body">
+      <div id="previewContent"></div>
+      <div class="text-center mt-4">
+        <button class="btn btn-warning mx-2" onclick="editForm()">Edit</button>
+        <button class="btn btn-info mx-2" onclick="downloadPreview()">Download</button>
+        <button class="btn btn-success mx-2" onclick="finalSubmitConfirm()">Final Submit</button>
+      </div>
+    </div>
+  </div>
+
+  
+</div>
 <script>
   // script for the 2nd dilog box..............
   function showDateAndTime(btn) {
@@ -788,13 +917,1102 @@ function showppeArea(buttonElement) {
 <!-- script for  hospital selected -->
  <script>
   function toggleHospitalInput() {
-  const isChecked = document.getElementById("treatmentExternal").checked;
+  const external = document.getElementById("treatmentExternal").checked;
   const hospitalBox = document.getElementById("hospitalDescriptionBox");
+  hospitalBox.style.display = external ? "block" : "none";
+  if (!external) {
+    document.getElementById("hospitalDetails").value = "";
+  }
+}
 
-  hospitalBox.style.display = isChecked ? "block" : "none";
+ </script>
 
-  if (!isChecked) {
-    document.getElementById("hospitalDetails").value = ""; // clear input
+ <!-- script for Analysis and Countermeasure problem reason  -->
+<!-- ...existing code... -->
+
+<!-- script for AffectedBodyPartArea -->
+  <script>
+   let accidentTypeValue = ""; // Stores final accident type
+
+function showAffectedBodyPartArea(buttonElement) {
+  const selectedAccidentRadio = document.querySelector('input[name="accidentType"]:checked');
+
+  if (!selectedAccidentRadio) {
+    alert("Please select the type of accident.");
+    return;
+  }
+
+  const selectedType = selectedAccidentRadio.value;
+
+  if (selectedType === "Fire") {
+    const selectedFireClass = document.querySelector(
+      '#fireClassSection input[name="accidentType"]:checked'
+    );
+
+    if (!selectedFireClass || !["A", "B", "C", "D", "E"].includes(selectedFireClass.value)) {
+      alert("Please select the class of fire.");
+      return;
+    }
+
+    accidentTypeValue = "Fire - Class " + selectedFireClass.value;
+  } else if (selectedType === "Other") {
+    const otherText = document.getElementById("otherComment").value.trim();
+
+    if (otherText === "") {
+      alert("Please specify the accident type in the comment box.");
+      return;
+    }
+
+    accidentTypeValue = "Other - " + otherText;
+  } else {
+    accidentTypeValue = selectedType;
+  }
+
+  // Show next section
+  const nextSection = document.getElementById("AffectedBodyPartArea");
+  nextSection.style.display = "block";
+
+  // Hide current "Next" button
+  buttonElement.style.display = "none";
+
+  // Scroll to next section
+  nextSection.scrollIntoView({ behavior: "smooth" });
+}
+  </script>
+
+
+<!-- script for PPE section -->
+ <!-- <script>
+ function togglePpeBox(option) {
+  const box = document.getElementById("ppeInputBox");
+  const input = document.getElementById("ppeText");
+
+  box.style.display = "block";
+
+  if (option === 'yes') {
+    input.placeholder = "What PPE was used?";
+  } else if (option === 'no') {
+    input.placeholder = "Why was PPE not used?";
+  }
+}
+ </script> -->
+
+
+<!-- PPE script  -->
+<script>
+let ppeUsedValue = "";
+let ppeDescription = "";
+
+function togglePpeBox(option) {
+  const inputBox = document.getElementById("ppeInputBox");
+  const input = document.getElementById("ppeText");
+
+  if (option === "yes") {
+    inputBox.style.display = "block";
+    input.placeholder = "Mention the PPE used (e.g., helmet, gloves)";
+  } else if (option === "no") {
+    inputBox.style.display = "block";
+    input.placeholder = "Why was PPE not used?";
+  }
+}
+
+function showmedicalTreatmentArea(buttonElement) {
+  const selectedPpeRadio = document.querySelector('input[name="ppe"]:checked');
+
+  if (!selectedPpeRadio) {
+    alert("Please select if PPE was used or not.");
+    return;
+  }
+
+  const ppeInputText = document.getElementById("ppeText").value.trim();
+
+  if (ppeInputText === "") {
+    alert("Please provide a description regarding PPE.");
+    return;
+  }
+
+  // Store values
+  ppeUsedValue = selectedPpeRadio.value;
+  ppeDescription = ppeInputText;
+
+  // Show next section
+  const nextSection = document.getElementById("medicalTreatmentArea");
+  if (nextSection) {
+    nextSection.style.display = "block";
+    nextSection.scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Hide the current button
+  buttonElement.style.display = "none";
+}
+
+</script>
+
+
+
+<!-- script for medical treatment -->
+ <script>
+let medicalTreatmentLocations = [];
+let externalHospitalDetails = "";
+
+
+function showITCActionArea(buttonElement) {
+  const inhouse = document.getElementById("treatmentInhouse");
+  const external = document.getElementById("treatmentExternal");
+  const hospitalText = document.getElementById("hospitalDetails").value.trim();
+
+  // Reset previous data
+  medicalTreatmentLocations = [];
+  externalHospitalDetails = "";
+
+  if (!inhouse.checked && !external.checked) {
+    alert("Please select at least one medical treatment location.");
+    return;
+  }
+
+  if (inhouse.checked) {
+    medicalTreatmentLocations.push(inhouse.value);
+  }
+
+  if (external.checked) {
+    if (hospitalText === "") {
+      alert("Please provide details for the external hospital.");
+      return;
+    }
+    medicalTreatmentLocations.push(external.value);
+    externalHospitalDetails = hospitalText;
+  }
+
+  // Proceed to next section
+  const nextSection = document.getElementById("ITCActionArea");
+  if (nextSection) {
+    nextSection.style.display = "block";
+    nextSection.scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Hide the Next button
+  buttonElement.style.display = "none";
+}
+ </script>
+
+
+
+<!-- script for Immediate Temporary Containment Action -->
+ <script>
+  let immediateContainmentAction = "";
+
+function showwhy5AnalysisArea(buttonElement) {
+  const itcTextarea = document.querySelector('#ITCActionArea textarea');
+  const actionValue = itcTextarea.value.trim();
+
+  if (actionValue === "") {
+    alert("Please describe the immediate temporary containment action.");
+    return;
+  }
+
+  immediateContainmentAction = actionValue;
+
+  // Show next section
+  const nextSection = document.getElementById("why5AnalysisArea");
+  if (nextSection) {
+    nextSection.style.display = "block";
+    nextSection.scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Hide this next button
+  buttonElement.style.display = "none";
+}
+
+ </script>
+
+<!-- next button script -->
+<script>
+function showNextSection(currentId, nextId) {
+  document.getElementById(currentId).querySelector("button").style.display = "none"; // hide current Next button
+  document.getElementById(nextId).style.display = "block"; // show next section
+}
+
+// PPE placeholder logic
+function togglePpeBox(option) {
+  const box = document.getElementById("ppeInputBox");
+  const input = document.getElementById("ppeText");
+
+  box.style.display = "block";
+  input.placeholder = option === "yes" ? "What PPE was used?" : "Why was PPE not used?";
+}
+
+
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Attach change event to plant radio buttons
+  document.querySelectorAll('input[name="plant"]').forEach(function(radio) {
+    radio.addEventListener("change", function() {
+      updateLocation(this.value);
+    });
+  });
+
+  // Attach change event to location dropdown
+  document.getElementById("location").addEventListener("change", function () {
+    const selected = this.value;
+    const otherDept = document.getElementById("otherlocationGroup");
+    if (selected === "Other") {
+      otherDept.style.display = "block";
+    } else {
+      otherDept.style.display = "none";
+    }
+  });
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+
+<script>
+function finalSubmit() {
+  // Gather all data from your variables
+  let previewHTML = `
+    <table class="table table-bordered">
+      <tbody>
+        <tr><th>Incident Type</th><td>${document.getElementById('incidentType').value}</td></tr>
+        <tr><th>Date</th><td>${document.getElementById('dateInput').value}</td></tr>
+        <tr><th>Time</th><td>${document.getElementById('timeInput').value}</td></tr>
+        <tr><th>Employee Name</th><td>${employeeName}</td></tr>
+        <tr><th>Employee ID</th><td>${employeeId}</td></tr>
+        <tr><th>Gender</th><td>${employeeGender}</td></tr>
+        <tr><th>Department</th><td>${department}</td></tr>
+        <tr><th>Contract Name</th><td>${contactName}</td></tr>
+        <tr><th>Shift Leader</th><td>${shiftLeader}</td></tr>
+        <tr><th>Plant Location</th><td>${plantLocation}</td></tr>
+        <tr><th>Incident Location</th><td>${incidentLocation}</td></tr>
+        <tr><th>Machine</th><td>${machineName}</td></tr>
+        <tr><th>Manager</th><td>${managerName}</td></tr>
+        <tr><th>Shift</th><td>${shiftType}</td></tr>
+        <tr><th>Accident Type</th><td>${accidentTypeValue}</td></tr>
+        <tr><th>Affected Body Part</th><td>${affectedBodyPartValue}</td></tr>
+        <tr><th>PPE Used</th><td>${ppeUsedValue} (${ppeDescription})</td></tr>
+        <tr><th>Medical Treatment</th><td>${medicalTreatmentLocations.join(", ")} ${externalHospitalDetails ? '('+externalHospitalDetails+')' : ''}</td></tr>
+        <tr><th>Immediate Containment Action</th><td>${immediateContainmentAction}</td></tr>
+        <tr><th>5 Why Problem</th><td>${document.getElementById('whyProblem').value}</td></tr>
+        <tr><th>5 Why Reasons</th><td>${
+          Array.from(document.getElementsByName('whyReason[]')).map(i=>i.value).filter(Boolean).join('<br>')
+        }</td></tr>
+      </tbody>
+    </table>
+  `;
+
+  document.getElementById('mainFormSection').style.display = "none";
+  document.getElementById('previewSection').style.display = "block";
+  document.getElementById('previewContent').innerHTML = previewHTML;
+}
+
+// Edit button: return to form
+function editForm() {
+  document.getElementById('previewSection').style.display = "none";
+  document.getElementById('mainFormSection').style.display = "block";
+}
+
+// Download button: download preview as PDF
+function downloadPreview() {
+  const element = document.getElementById('previewSection');
+  html2pdf().from(element).set({
+    margin: 10,
+    filename: 'incident-preview.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  }).save();
+}
+
+// Final Submit button: show confirmation and reset
+function finalSubmitConfirm() {
+  alert("Form submitted successfully!");
+  location.reload(); // Or reset form as needed
+}
+</script>
+</body>
+</html>
+
+</head>
+<body >
+  <div class="container mt-5" id="mainFormSection">
+    <div class="text-end mt-3">
+        <a href="CountermeasureForm.html"><button type="button" class="btn btn-primary px-4">Open Countermeasure Form</button></a>
+    </div>
+    <h1>INCIDENT/ACCIDENT/INJURY & ILL HEALTH REPORT</h1>
+    <!-- Incident Type Selection -->
+    <div class="card shadow">
+      <div class="card-header bg-dark text-white card1">
+        <h4>Nature of Accident</h4>
+      </div>
+      <div class="card-body">
+        <form id="incidentForm">
+          <div class="form-check mb-2 form-check-inline">
+            <input class="form-check-input" type="radio" name="incident" id="lti" value="Lost Time Injury">
+            <label class="form-check-label" for="lti">Lost Time Injury (LTI)</label>
+          </div>
+          <div class="form-check mb-2 form-check-inline">
+            <input class="form-check-input" type="radio" name="incident" id="mi" value="Minor Injury">
+            <label class="form-check-label" for="mi">Minor Injury (MI)</label>
+          </div>
+          <div class="form-check mb-2 form-check-inline">
+            <input class="form-check-input" type="radio" name="incident" id="firstaid" value="First Aid">
+            <label class="form-check-label" for="firstaid">First Aid</label>
+          </div>
+          <div class="form-check mb-3 form-check-inline" >
+            <input class="form-check-input" type="radio" name="incident" id="nearmiss" value="Near Miss">
+            <label class="form-check-label" for="nearmiss">Near Miss</label>
+          </div>
+        <div class="text-end mt-3">
+        <button type="button" class="btn btn-primary px-4" onclick="showDateAndTime(this)">Next</button>
+      </div>
+        </form>
+      </div>
+    </div>
+
+
+    <!-- incident date and time -->
+
+  <div class="card shadow mt-4 " id="dateAndTimeSec">
+    <div class="card-header bg-secondary text-white">
+        <h4>Date & Time</h4>
+      </div>
+      <div class="card-body">
+    <div class="row">
+    <div class="col-md-6 ">
+      <label for="date" class="form-label">Date of Incident <span class="text-danger">*</span></label>
+      <input type="date" class="form-control" id="dateInput" required>
+    </div>
+    <div class="col-md-6">
+      <label for="time" class="form-label">Time of Incident <span class="text-danger">*</span></label>
+      <input type="time" class="form-control" id="timeInput" required>
+    </div>
+    <div class="text-end mt-3">
+        <button type="button" class="btn btn-primary px-4" onclick="showDetails(this)">Next</button>
+      </div>
+    
+    </div>
+    </div>
+    </div>
+
+
+    <!-- Employee Details Section -->
+    <div class="card shadow mt-4" id="employeeDetails">
+      <div class="card-header bg-secondary text-white">
+        <h4>Employee Personal Details</h4>
+      </div>
+      
+      <div class="card-body">
+        <form>
+          <input type="hidden" id="incidentType" name="incidentType">
+          <div class="mb-3">
+            <label for="name" class="form-label">Employee Name <span class="text-danger">*</span></label>
+          <input type="text" class="form-control" id="name" placeholder="Enter employee name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="empId" class="form-label">Employee ID <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="empId" placeholder="Enter  employee ID" required>
+      </div>
+
+  <!-- Gender -->
+      <div class="mb-3">
+        <label class="form-label" >Gender</label><br>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" id="male" value="Male">
+          <label class="form-check-label" for="male">Male</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" id="female" value="Female">
+          <label class="form-check-label" for="female">Female</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="gender" id="other" value="Other">
+          <label class="form-check-label" for="other">Other</label>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="department" class="form-label">Department <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="empDepartment" placeholder=" Enter name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="contact" class="form-label">Contract Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="contactName" placeholder="Enter Contact Name" required>
+      </div>
+
+      <div class="mb-3">
+        <label for="shiftleader" class="form-label">Shift Leader</label>
+        <input type="text" class="form-control" id="ShiftLeader" placeholder="Enter Shift Leader Name">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Working location</label>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="plant" id="plant1" value="Plant One" onchange="updateLocation(this.value)">
+          <label class="form-check-label" for="plant1">Plant One</label>
+        </div>
+
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="plant" id="plant2" value="Plant Two" onchange="updateLocation(this.value)">
+          <label class="form-check-label" for="plant2">Plant Two</label>
+        </div>
+      </div>
+
+  <!-- Department Dropdown -->
+      <div class="mb-3" id="locationGroup" style="display: none;">
+        <label for="department" class="form-label">Incident Location</label>
+          <select class="form-select" id="location">
+            <option selected disabled>Select location</option>
+          </select>
+      </div>
+
+      <div class="mb-3" id="otherlocationGroup" style="display: none;">
+      <label for="otherDepartment" class="form-label">Specify the Location</label>
+        <input type="text" class="form-control" id="otherDepartment" placeholder="Enter the incident location">
+      </div>
+
+      <div class="mb-3">
+        <label for="machine" class="form-label">Machine </label>
+        <input type="text" class="form-control" id="machine" placeholder="Enter machine Name" >
+      </div>
+
+      <div class="mb-3">
+        <label for="Manager" class="form-label">Manager </label>
+        <input type="text" class="form-control" id="Manager" placeholder="Enter Manager Name" >
+      </div>   
+
+          <!-- Plant Selection -->
+          
+      <div class="mb-3">
+        <label for="shift" class="form-label">Shift </label>
+        <select class="form-select" id="shift" >
+          <option selected disabled>Select shift</option>
+          <option value="General">General</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+        </select>
+        <div class="text-end mt-3">
+            <button type="button" class="btn btn-primary px-4" onclick="showAccidentType(this)">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- incident date and time -->
+
+  <div class="card shadow mt-4 " id="accidentTypeboxArea">
+    <div class="card-header bg-secondary text-white">
+        <h4>Type of Accident</h4>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+          <div class="col-md-12 ">
+            <label for="date" class="form-label">Select the accident type</label>
+          </div>
+
+        <div class="row">
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Biological Exposure</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Electrical Shock</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Abrasion</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Suffocation</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Chemical Exposure</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Chemical Spill</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Impulse Noise</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Crush/Impact/Compress</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Crush/Impact/Compress</label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Biological Spill </label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Food poisoning </label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Impulse Noise </label>
+          </div>
+          
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Crush/Impact/Compress </label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Arson </label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Fall/Flying/Falling </label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Heat Illness </label>
+          </div>
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="">Pinch </label>
+          </div>
+
+          <div class="col-md-4 d-flex align-items-center mb-2">
+              <input type="radio" class="form-check-input me-2" name="accidentType" value="Fire" onclick="showFireSection()">
+              <label class="form-check-label">Fire</label>
+          </div>
+
+          <div class="col-md-4 d-flex align-items-center mb-2">
+              <input type="radio" class="form-check-input me-2" name="accidentType" value="Other" onclick="showOtherComment()">
+              <label class="form-check-label">Other</label>
+          </div>
+        </div>
+      </div>
+
+
+        <!-- Fire Class Section -->
+      <div id="fireClassSection" class="mt-4 p-3 border rounded bg-light" style="display: none;">
+        <label class="form-label fw-bold mb-3">Which class of fire?</label>
+        <div class="row">
+          <div class="col-md-6 mb-2">
+            <input type="radio" class="form-check-input me-2" name="accidentType" value="A" id="classA">
+            <label for="classA" class="form-check-label">
+              <strong>Class A</strong> – Fires involving solid materials such as <em>wood, paper or textiles</em>
+            </label>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <input type="radio" class="form-check-input me-2" name="accidentType" value="B" id="classB">
+            <label for="classB" class="form-check-label">
+              <strong>Class B</strong> – Fires involving flammable liquids such as <em>petrol, diesel or oils</em>
+            </label>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <input type="radio" class="form-check-input me-2" name="accidentType" value="C" id="classC">
+            <label for="classC" class="form-check-label">
+              <strong>Class C</strong> – Fires involving <em>gases</em>
+            </label>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <input type="radio" class="form-check-input me-2" name="accidentType" value="D" id="classD">
+            <label for="classD" class="form-check-label">
+              <strong>Class D</strong> – Fires involving <em>metals</em>
+            </label>
+          </div>
+
+          <div class="col-md-6 mb-2">
+            <input type="radio" class="form-check-input me-2" name="accidentType" value="E" id="classE">
+            <label for="classE" class="form-check-label">
+              <strong>Class E</strong> – Fires involving <em>live electrical apparatus</em>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    <!-- Other Comment Section -->
+      <div id="otherCommentSection" class="mt-4 p-3 border rounded bg-light" style="display: none;">
+        <label for="otherComment" class="form-label fw-bold">Please specify the accident type:</label>
+        <textarea id="otherComment" class="form-control" rows="3" placeholder="Describe the accident..."></textarea>
+      </div>
+
+      <div class="text-end mt-3">
+          <button type="button" class="btn btn-primary px-4" onclick="showAffectedBodyPartArea(this)">Next</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AffectedBodyPart -->
+
+  <div class="card shadow mt-4 " id="AffectedBodyPartArea">
+    <div class="card-header bg-secondary text-white">
+        <h4>Affected Body Part</h4>
+      </div>
+      <div class="card-body">
+        <div class="row">
+        <div class="mb-3">
+          <label class="form-label">Select Affected Body Part <span class="text-danger">*</span></label>
+          <div class="row">
+
+            <div class="col-md-3">
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Head" id="bpHead"><label class="form-check-label" for="bpHead">Head</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Eye" id="bpEye"><label class="form-check-label" for="bpEye">Eye</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Ear" id="bpEar"><label class="form-check-label" for="bpEar">Ear</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Chin" id="bpChin"><label class="form-check-label" for="bpChin">Chin</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Nose" id="bpNose"><label class="form-check-label" for="bpNose">Nose</label></div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Shoulder" id="bpShoulder"><label class="form-check-label" for="bpShoulder">Shoulder</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Stomach" id="bpStomach"><label class="form-check-label" for="bpStomach">Stomach</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Chest" id="bpChest"><label class="form-check-label" for="bpChest">Chest</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Neck" id="bpNeck"><label class="form-check-label" for="bpNeck">Neck</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Lips" id="bpLips"><label class="form-check-label" for="bpLips">Lips</label></div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Arm" id="bpArm"><label class="form-check-label" for="bpArm">Arm</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Hand" id="bpHand"><label class="form-check-label" for="bpHand">Hand</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Finger" id="bpFinger"><label class="form-check-label" for="bpFinger">Finger</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Leg" id="bpLeg"><label class="form-check-label" for="bpLeg">Leg</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Ankle" id="bpAnkle"><label class="form-check-label" for="bpAnkle">Ankle</label></div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Thigh" id="bpThigh"><label class="form-check-label" for="bpThigh">Thigh</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Heel" id="bpHeel"><label class="form-check-label" for="bpHeel">Heel</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Foot" id="bpFoot"><label class="form-check-label" for="bpFoot">Foot</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Toes" id="bpToes"><label class="form-check-label" for="bpToes">Toes</label></div>
+              <div class="form-check"><input class="form-check-input" type="radio" name="bodyPart" value="Whole Body" id="bpWhole"><label class="form-check-label" for="bpWhole">Whole Body</label></div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="bodyPart" value="Other" id="bpOther" onchange="toggleOtherInput()">
+                <label class="form-check-label" for="bpOther">Other</label>
+              </div>
+
+            <!-- Hidden textbox -->
+              <div id="otherBodyPartGroup" style="display: none; margin-top: 10px; width: 100%;">
+                <input type="text" class="form-control" id="otherBodyPart" placeholder="Specify other body part">
+              </div>
+            </div>
+
+              <div class="text-end mt-3">
+                <button type="button" class="btn btn-primary px-4" onclick="showppeArea(this)">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+
+  <!--  PPE Details -->
+      <div class="card shadow mt-4 " id="ppeArea">
+        <div class="card-header bg-secondary text-white">
+          <h4>PPE’s Details</h4>
+        </div>
+        <div class="card-body">
+          <div class="mb-4">
+          <label class="form-label fw-bold"> Did the PPE is used? <span class="text-danger">*</span></label>
+            <div class="row align-items-start g-3">
+
+      <!-- YES option -->
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="ppe" id="ppeYes" value="Yes" onchange="togglePpeBox('yes')">
+              <label class="form-check-label" for="ppeYes">Yes</label>
+            </div>
+
+            <div class="form-check mb-2">
+              <input class="form-check-input" type="radio" name="ppe" id="ppeNo" value="No" onchange="togglePpeBox('no')">
+              <label class="form-check-label" for="ppeNo">No</label>
+            </div>
+
+    <!-- Hidden Input Box -->
+            <div id="ppeInputBox" style="display: none;">
+              <input type="text" class="form-control" id="ppeText" placeholder="">
+            </div>
+
+            <div class="text-end mt-3">
+            <button type="button" class="btn btn-primary px-4" onclick="showmedicalTreatmentArea(this)">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+  <!--Medical Treatment -->
+      <div class="card shadow mt-4 " id="medicalTreatmentArea">
+        <div class="card-header bg-secondary text-white">
+            <h4>Medical Treatment</h4>
+        </div>
+
+          <div class="card-body">
+            <div class="mb-4">
+                <label class="form-label fw-bold">Where the medical treatment occure?</label>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="medicalTreatment" id="treatmentInhouse" value="In House" onchange="toggleHospitalInput()">
+                <label class="form-check-label" for="treatmentInhouse">In House First Aid Center</label>
+              </div>
+
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="medicalTreatment" id="treatmentExternal" value="External Hospital" onchange="toggleHospitalInput()">
+                <label class="form-check-label" for="treatmentExternal">External Hospital</label>
+              </div>
+
+              <!-- Hidden by default -->
+              <div id="hospitalDescriptionBox" class="mt-3" style="display: none;">
+                <label for="hospitalDetails" class="form-label">External Hospital Details</label>
+                <textarea class="form-control" id="hospitalDetails" rows="3" placeholder="Enter hospital name, treatment received, etc."></textarea>
+              </div>
+              <div class="text-end mt-3">
+                <button type="button" class="btn btn-primary px-4" onclick="showITCActionArea(this)">Next</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      <!--  Temporary Containment Action -->
+        <div class="card shadow mt-4 " id="ITCActionArea">
+          <div class="card-header bg-secondary text-white">
+            <h4>Immediate Temporary Containment Action</h4>
+          </div>
+
+          <div class="card-body">
+            <div class="mb-4">
+            <label class="form-label fw-bold"> What are the immediate temporary containment action to prevent same accident</label>
+              <textarea class="form-control" rows="3" placeholder="Describe actions taken to prevent repeat accident"></textarea>
+            </div>
+            <div class="text-end mt-3">
+                <button type="button" class="btn btn-primary px-4" onclick="showwhy5AnalysisArea(this)">Next</button>
+            </div>
+          </div>
+        </div>
+
+  <!-- 5 why section -->
+        <div class="card shadow mt-4 " id="why5AnalysisArea">
+          <div class="card-header bg-secondary text-white">
+                <h4>5 Why Analysis and Countermeasure</h4>
+          </div>
+          <div class="card-body">
+          <div class="mb-4">
+            <label class="form-label fw-bold"> 5 Why Analysis and Countermeasure to be approved by Head HR/Plant Head</label>
+            
+            <!-- Problem -->
+            <div class="mb-3">
+              <label for="whyProblem" class="form-label">Problem</label>
+              <input type="text" class="form-control" id="whyProblem" placeholder="Describe the problem">
+            </div>
+
+            <!-- Add Reason Button -->
+            <button type="button" class="btn btn-outline-primary" onclick="addWhyReason()">Add Reason</button>
+            <div id="whyReasonsContainer" class="mt-3"></div>
+          </div>
+
+          <div class="text-end mt-3">
+            <button onclick="finalSubmit()" class="btn btn-success mt-4">Submit</button>
+          </div>
+        </div>
+      </div>
+<!-- last main div close -->
+  </div>
+
+
+<div class="container mt-5" id="previewSection" style="display:none;">
+  <div class="card shadow">
+    <div class="card-header bg-success text-white">
+      <h4>Preview of Your Submission</h4>
+    </div>
+    <div class="card-body">
+      <div id="previewContent"></div>
+      <div class="text-center mt-4">
+        <button class="btn btn-warning mx-2" onclick="editForm()">Edit</button>
+        <button class="btn btn-info mx-2" onclick="downloadPreview()">Download</button>
+        <button class="btn btn-success mx-2" onclick="finalSubmitConfirm()">Final Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // script for the 2nd dilog box..............
+  function showDateAndTime(btn) {
+    const selected = document.querySelector('input[name="incident"]:checked');
+    if (selected) {
+      document.getElementById('incidentType').value = selected.value;
+      document.getElementById('dateAndTimeSec').style.display = 'block';
+      btn.style.display="none";
+      document.getElementById('dateAndTimeSec').scrollIntoView({ behavior: 'smooth' });
+    } else {
+      alert("Please select an Incident type.");
+    }
+  }
+   
+    function showDetails(btn) {
+
+  const dateValue = document.getElementById('dateInput').value;
+  const timeValue = document.getElementById('timeInput').value;
+  
+
+  if (!dateValue || !timeValue) {
+
+    alert("Both Date and Time are required!");
+   } 
+   
+    else  {
+      document.getElementById('employeeDetails').style.display = 'block';
+      btn.style.display="none";
+      document.getElementById('employeeDetails').scrollIntoView({ behavior: 'smooth' });
+    } 
+  }
+
+
+//script for the location...........
+  function updateLocation(plant) {
+    const locationDropdown = document.getElementById("location");
+    const locationGroup = document.getElementById("locationGroup");
+    locationDropdown.innerHTML = ''; // Clear old options
+
+    const departments = {
+      "Plant One": ["Press shop", "Utility", "ETP/STP", "Press pit","Weld Shop","Store","Canteen area","office","B6 line","jcb","Maintenance area","Main Gate","Scrap Yard","Fabrication","Road"],
+      "Plant Two": ["Press shop", "Utility", "ETP/STP", "Press pit","Weld Shop","Store","Canteen area","office","B6 line","jcb","Maintenance area","Main Gate","Scrap Yard","Fabrication","Road"]
+    };
+
+    // Add new options
+      const defaultOption = document.createElement("option");
+      defaultOption.text = "Select location";
+      defaultOption.disabled = true;
+      defaultOption.selected = true;
+      locationDropdown.appendChild(defaultOption);
+
+      departments[plant].forEach(dep => {
+      const option = document.createElement("option");
+      option.value = dep;
+      option.text = dep;
+      locationDropdown.appendChild(option);
+    });
+
+      // Add "Other" option at the end............
+      const otherOption = document.createElement("option");
+      otherOption.value = "Other";
+      otherOption.text = "Other";
+      locationDropdown.appendChild(otherOption);
+
+      // Show dropdown
+       locationGroup.style.display = "block";
+  }
+
+ document.getElementById("location").addEventListener("change", function () {
+  const selected = this.value;
+  const otherDept = document.getElementById("otherlocationGroup");
+  if (selected === "Other") {
+    otherDept.style.display = "block";
+  } else {
+    otherDept.style.display = "none";
+  }
+});
+</script>
+ 
+<!-- employeeDetails Scripts -->
+<script>
+  // Define variables to store input values
+let employeeName = "";
+let employeeId = "";
+let employeeGender = "";
+let department = "";
+let contactName = "";
+let shiftLeader = "";
+let plantLocation = "";
+let incidentLocation = "";
+let machineName = "";
+let managerName = "";
+let shiftType = "";
+
+function showAccidentType(btn) {
+  // Get field values
+  employeeName = document.getElementById("name").value.trim();
+  employeeId = document.getElementById("empId").value.trim();
+  department = document.getElementById("empDepartment").value.trim();
+  contactName = document.getElementById("contactName").value.trim();
+  shiftLeader = document.getElementById("ShiftLeader").value.trim();
+  machineName = document.getElementById("machine").value.trim();
+  managerName = document.getElementById("Manager").value.trim();
+  shiftType = document.getElementById("shift").value;
+  plantLocation = document.querySelector('input[name="plant"]:checked')?.value || "";
+
+  const genderRadio = document.querySelector('input[name="gender"]:checked');
+  employeeGender = genderRadio ? genderRadio.value : "";
+
+  const locationSelect = document.getElementById("location");
+  const locationInput = document.getElementById("otherDepartment");
+
+  // Check if "Other" is selected in location dropdown
+  if (locationSelect.value === "Other") {
+    incidentLocation = locationInput.value.trim();
+  } else {
+    incidentLocation = locationSelect.value;
+  }
+
+  //  Validation: Check required fields
+  if (!employeeName || !employeeId || !department || !contactName || !plantLocation || !incidentLocation) {
+    alert("Please fill all required fields marked with *");
+    return;
+  }
+
+  //  Proceed to next section
+  const nextSection = document.getElementById("accidentTypeboxArea");
+  nextSection.style.display = "block";
+
+  //  Hide the current Next button
+  btn.style.display = "none";
+
+  //  Smooth scroll to next section
+  nextSection.scrollIntoView({ behavior: "smooth" });
+}
+</script>
+
+
+<script>
+  document.querySelector('#employeeDetails form').addEventListener('submit', function(e) {
+    const name = document.getElementById("name").value.trim();
+    const empId = document.getElementById("empId").value.trim();
+
+    if (!name || !empId) {
+      alert("Please fill in all required fields: Full Name and Employee ID.");
+      e.preventDefault(); // Stop form from submitting
+    }
+  });
+
+</script>
+
+<!-- fire class screipt -->
+ 
+<script>
+
+  function showFireSection() {
+    document.getElementById('fireClassSection').style.display = 'block';
+    document.getElementById('otherCommentSection').style.display = 'none';
+  }
+
+  function showOtherComment() {
+    document.getElementById('fireClassSection').style.display = 'none';
+    document.getElementById('otherCommentSection').style.display = 'block';
+  }
+
+  function hideAllExtraFields() {
+    document.getElementById('fireClassSection').style.display = 'none';
+    document.getElementById('otherCommentSection').style.display = 'none';
+  }
+
+  // Apply this to all radio buttons on page load to handle changes
+  document.querySelectorAll("input[name='accident']").forEach(radio => {
+    radio.addEventListener("change", function () {
+      if (this.value !== "Fire" && this.value !== "Other") {
+        hideAllExtraFields();
+      }
+    });
+  });
+
+</script>
+
+
+<script>
+  function toggleOtherInput() {
+    const otherRadio = document.getElementById("bpOther");
+    const inputBox = document.getElementById("otherBodyPartGroup");
+
+    // Show input if "Other" is selected
+    if (otherRadio.checked) {
+      inputBox.style.display = "block";
+    }
+
+    // Hide input when another radio is selected
+    document.querySelectorAll('input[name="bodyPart"]').forEach(radio => {
+      if (radio.id !== "bpOther") {
+        radio.addEventListener("change", () => {
+          inputBox.style.display = "none";
+          document.getElementById("otherBodyPart").value = "";
+        });
+      }
+    });
+  }
+</script>
+
+
+<!-- showAffectedBodyPartArea   -->
+<script>
+let affectedBodyPartValue = ""; // to store final selected body part
+
+function showppeArea(buttonElement) {
+  const selectedBodyPartInput = document.querySelector('input[name="bodyPart"]:checked');
+
+  // Validate selection
+  if (!selectedBodyPartInput) {
+    alert("Please select the affected body part.");
+    return;
+  }
+
+  const selectedBodyPart = selectedBodyPartInput.value;
+
+  // Handle 'Other' case
+  if (selectedBodyPart === "Other") {
+    const otherInput = document.getElementById("otherBodyPart").value.trim();
+    if (!otherInput) {
+      alert("Please specify the affected body part.");
+      return;
+    }
+    affectedBodyPartValue = otherInput;
+  } else {
+    affectedBodyPartValue = selectedBodyPart;
+  }
+
+  // Show next section and hide button
+  const ppeSection = document.getElementById("ppeArea");
+  ppeSection.style.display = "block";
+  buttonElement.style.display = "none";
+  ppeSection.scrollIntoView({ behavior: "smooth" });
+}
+
+</script>
+
+
+
+
+
+
+<!-- script for  hospital selected -->
+ <script>
+  function toggleHospitalInput() {
+  const external = document.getElementById("treatmentExternal").checked;
+  const hospitalBox = document.getElementById("hospitalDescriptionBox");
+  hospitalBox.style.display = external ? "block" : "none";
+  if (!external) {
+    document.getElementById("hospitalDetails").value = "";
   }
 }
 
@@ -1036,8 +2254,93 @@ function togglePpeBox(option) {
 
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Attach change event to plant radio buttons
+  document.querySelectorAll('input[name="plant"]').forEach(function(radio) {
+    radio.addEventListener("change", function() {
+      updateLocation(this.value);
+    });
+  });
 
+  // Attach change event to location dropdown
+  document.getElementById("location").addEventListener("change", function () {
+    const selected = this.value;
+    const otherDept = document.getElementById("otherlocationGroup");
+    if (selected === "Other") {
+      otherDept.style.display = "block";
+    } else {
+      otherDept.style.display = "none";
+    }
+  });
+});
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+
+<script>
+function finalSubmit() {
+  // Gather all data from your variables
+  let previewHTML = `
+    <table class="table table-bordered">
+      <tbody>
+        <tr><th>Incident Type</th><td>${document.getElementById('incidentType').value}</td></tr>
+        <tr><th>Date</th><td>${document.getElementById('dateInput').value}</td></tr>
+        <tr><th>Time</th><td>${document.getElementById('timeInput').value}</td></tr>
+        <tr><th>Employee Name</th><td>${employeeName}</td></tr>
+        <tr><th>Employee ID</th><td>${employeeId}</td></tr>
+        <tr><th>Gender</th><td>${employeeGender}</td></tr>
+        <tr><th>Department</th><td>${department}</td></tr>
+        <tr><th>Contract Name</th><td>${contactName}</td></tr>
+        <tr><th>Shift Leader</th><td>${shiftLeader}</td></tr>
+        <tr><th>Plant Location</th><td>${plantLocation}</td></tr>
+        <tr><th>Incident Location</th><td>${incidentLocation}</td></tr>
+        <tr><th>Machine</th><td>${machineName}</td></tr>
+        <tr><th>Manager</th><td>${managerName}</td></tr>
+        <tr><th>Shift</th><td>${shiftType}</td></tr>
+        <tr><th>Accident Type</th><td>${accidentTypeValue}</td></tr>
+        <tr><th>Affected Body Part</th><td>${affectedBodyPartValue}</td></tr>
+        <tr><th>PPE Used</th><td>${ppeUsedValue} (${ppeDescription})</td></tr>
+        <tr><th>Medical Treatment</th><td>${medicalTreatmentLocations.join(", ")} ${externalHospitalDetails ? '('+externalHospitalDetails+')' : ''}</td></tr>
+        <tr><th>Immediate Containment Action</th><td>${immediateContainmentAction}</td></tr>
+        <tr><th>5 Why Problem</th><td>${document.getElementById('whyProblem').value}</td></tr>
+        <tr><th>5 Why Reasons</th><td>${
+          Array.from(document.getElementsByName('whyReason[]')).map(i=>i.value).filter(Boolean).join('<br>')
+        }</td></tr>
+      </tbody>
+    </table>
+  `;
+
+  document.getElementById('mainFormSection').style.display = "none";
+  document.getElementById('previewSection').style.display = "block";
+  document.getElementById('previewContent').innerHTML = previewHTML;
+}
+
+// Edit button: return to form
+function editForm() {
+  document.getElementById('previewSection').style.display = "none";
+  document.getElementById('mainFormSection').style.display = "block";
+}
+
+// Download button: download preview as PDF
+function downloadPreview() {
+  const element = document.getElementById('previewSection');
+  html2pdf().from(element).set({
+    margin: 10,
+    filename: 'incident-preview.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  }).save();
+}
+
+// Final Submit button: show confirmation and reset
+function finalSubmitConfirm() {
+  alert("Form submitted successfully!");
+  location.reload(); // Or reset form as needed
+}
+</script>
 </body>
 </html>
