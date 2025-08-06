@@ -7,6 +7,30 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
+    /* Fix table cell text wrapping and input/textarea overflow */
+    .table th, .table td {
+      word-break: break-word;
+      white-space: normal;
+      text-align: center;
+      vertical-align: middle;
+    }
+    .table td .form-control, .table td textarea.form-control {
+      min-width: 120px;
+      width: 100%;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+    @media (max-width: 576px) {
+      .table th, .table td {
+        font-size: 13px;
+        padding: 0.3rem 0.2rem;
+      }
+      .table td .form-control, .table td textarea.form-control {
+        min-width: 80px;
+        font-size: 13px;
+        padding: 0.25rem 0.3rem;
+      }
+    }
     body {
       padding: 20px;
       font-size: 14px;
@@ -50,10 +74,34 @@
     #downloadBtn,#goBackBtn{
         text-align: center;
     }
+    /* Responsive table for mobile */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
     @media (max-width: 576px) {
+      body {
+        padding: 5px;
+      }
+      .container {
+        padding: 0 2px !important;
+      }
+      .preview-container {
+        flex-direction: column;
+        gap: 0;
+      }
       .preview-box {
+        max-width: 100%;
         flex: 1 1 100%;
-        border: none;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+      }
+      .card {
+        margin-bottom: 10px;
+      }
+      .table-responsive {
+        margin-bottom: 10px;
       }
     }
     @media print {
@@ -72,30 +120,32 @@
           <h4>Countermeasure Form</h4>
         </div>
         <div class="card-body">
-          <table class="table table-bordered">
-            <thead>
-              <tr>
-                <th>Countermeasure</th>
-                <th>Action</th>
-                <th>Responsibility</th>
-                <th>Status / Target Date</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>Countermeasure 2 (Permanent)</strong></td>
-                <td><textarea class="form-control" rows="3" name="action2" placeholder="Describe responsibility..."></textarea></td>
-                <td><input type="text" class="form-control" name="responsibility2" placeholder="Department / Person"></td>
-                <td><input type="text" class="form-control" name="status2" placeholder="Status or Target Date"></td>
-              </tr>
-              <tr>
-                <td><strong>Countermeasure 3 (Horizontal Deployment)</strong></td>
-                <td><textarea class="form-control" rows="3" name="action3"></textarea></td>
-                <td><input type="text" class="form-control" name="responsibility3"></td>
-                <td><input type="text" class="form-control" name="status3"></td>
-              </tr>
-            </tbody>
-          </table>
+          <div class="table-responsive">
+            <table class="table table-bordered mb-0">
+              <thead>
+                <tr>
+                  <th>Countermeasure</th>
+                  <th>Action</th>
+                  <th>Responsibility</th>
+                  <th>Status / Target Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Countermeasure 2 (Permanent)</strong></td>
+                  <td><textarea class="form-control" rows="3" name="action2" placeholder="Describe responsibility..."></textarea></td>
+                  <td><input type="text" class="form-control" name="responsibility2" placeholder="Department / Person"></td>
+                  <td><input type="text" class="form-control" name="status2" placeholder="Status or Target Date"></td>
+                </tr>
+                <tr>
+                  <td><strong>Countermeasure 3 (Horizontal Deployment)</strong></td>
+                  <td><textarea class="form-control" rows="3" name="action3"></textarea></td>
+                  <td><input type="text" class="form-control" name="responsibility3"></td>
+                  <td><input type="text" class="form-control" name="status3"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
