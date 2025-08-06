@@ -8,27 +8,37 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     /* Fix table cell text wrapping and input/textarea overflow */
-    .table th, .table td {
-      word-break: break-word;
+    .table th {
+      white-space: nowrap;
+      font-size: 15px;
+    }
+    .table td {
+      word-break: normal;
       white-space: normal;
-      text-align: center;
       vertical-align: middle;
     }
-    .table td .form-control, .table td textarea.form-control {
-      min-width: 120px;
+    .table td .form-control,
+    .table td textarea.form-control {
       width: 100%;
+      min-width: 80px;
       box-sizing: border-box;
-      resize: vertical;
+      font-size: 14px;
+      padding: 0.4rem 0.5rem;
     }
     @media (max-width: 576px) {
       .table th, .table td {
-        font-size: 13px;
+        font-size: 12px !important;
         padding: 0.3rem 0.2rem;
+        min-width: 90px;
       }
-      .table td .form-control, .table td textarea.form-control {
-        min-width: 80px;
-        font-size: 13px;
-        padding: 0.25rem 0.3rem;
+      .table td .form-control,
+      .table td textarea.form-control {
+        font-size: 12px !important;
+        padding: 0.28rem 0.3rem;
+        min-width: 70px;
+      }
+      .table-responsive {
+        overflow-x: auto;
       }
     }
     body {
