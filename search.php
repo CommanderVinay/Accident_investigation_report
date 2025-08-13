@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Incident Search & Report Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { 
+          font-family: "Nunito", sans-serif; 
+        }
+
+    .filter-label { 
+          font-weight: bold; 
+         }
+
+    .table th, .table td {
+           vertical-align: middle;
+         }
+
+    .modal-lg { 
+            max-width: 90vw;
+           }
+
+  </style>
+</head>
+<body>
+<div class="container mt-5">
+  <h2 class="mb-4 text-center" >Search Incident Reports</h2>
+  <form id="searchForm" class="row g-2 align-items-end mb-4" action="search1.php" method="GET">
+  <!-- Dropdown -->
+  <div class="col-md-3">
+    <label class="filter-label mb-1">Select Filter Option</label>
+    <select class="form-select" id="mainFilterType">
+      <option value="search_person" selected>Name / Employee ID / Department</option>
+      <option value="date">Date</option>
+      <option value="month_year">Month & Year</option>
+      <option value="year">Year</option>
+      <option value="incident">Nature of Accident</option>
+      <option value="incident_location">Incident Location</option>
+      <option value="accidentType">Accident Type</option>
+      <option value="status">Status</option>
+    </select>
+  </div>
+
+  <!-- Search Input -->
+  <div class="col-md-8">
+    <!-- All filter inputs will be here (only one shown at a time) -->
+    <input type="date" class="form-control d-none" id="filterInputDate" name="date" >
+    <input type="number" class="form-control d-none" id="filterInputYear" name="year" placeholder="Enter year" min="1900" max="2100">
+    <input type="month" class="form-control d-none" id="filterInputMonthYear" name="month_year">
+    <input type="text" class="form-control" id="filterInputPerson" name="name" placeholder="Type name, ID or department">
+    <select class="form-select d-none" id="filterInputIncident" name="incident">
+      <option value="">Select Nature of Accident</option>
+      <option value="Lost Time Injury">Lost Time Injury (LTI)</option>
+      <option value="Minor Injury">Minor Injury (MI)</option>
+      <option value="First Aid">First Aid</option>
+      <option value="Near Miss">Near Miss</option>
+    </select>
+    <select class="form-select d-none" id="filterInputLocation" name="incident_location">
+      <option value="">Select Location</option>
+      <option value="Press shop">Press shop</option>
+      <option value="Utility">Utility</option>
+      <option value="ETP/STP">ETP/STP</option>
+      <option value="Press pit">Press pit</option>
+      <option value="Weld Shop">Weld Shop</option>
+      <option value="Store">Store</option>
+      <option value="Canteen area">Canteen area</option>
+      <option value="office">Office</option>
+      <option value="B6 line">B6 line</option>
+      <option value="jcb">JCB</option>
+      <option value="Maintenance area">Maintenance area</option>
+      <option value="Main Gate">Main Gate</option>
+      <option value="Scrap Yard">Scrap Yard</option>
+      <option value="Fabrication">Fabrication</option>
+      <option value="Road">Road</option>
+    </select>
+    <select class="form-select d-none" id="filterInputAccidentType" name="accidentType">
+      <option value="">Select Accident Type</option>
+      <option value="Abrasion">Abrasion</option>
+      <option value="Crush/Impact/Compress">Crush/Impact/Compress</option>
+      <option value="Cut/Laceration">Cut/Laceration</option>
+      <option value="Burn">Burn</option>
+      <option value="Fracture">Fracture</option>
+      <option value="Sprain/Strain">Sprain/Strain</option>
+      <option value="Fall">Fall</option>
+      <option value="Fire">Fire</option>
+    </select>
+    <select class="form-select d-none" id="filterInputStatus" name="status">
+      <option value="">Select Status</option>
+      <option value="Open">Open</option>
+      <option value="Closed">Closed</option>
+      <option value="In Progress">In Progress</option>
+    </select>
+  </div>
+
+  <!-- Search Button -->
+  <div class="col-md-1">
+    <button type="submit" class="btn btn-primary w-100">Search</button>
+  </div>
+</form>
+
+
+  <div id="resultsSection">
+    <table class="table table-bordered table-hover" id="resultsTable">
+      <thead class="table-dark">
+        <tr>
+          <th>Date</th>
+          <th>Employee Name</th>
+          <th>Employee ID</th>
+          <th>Department</th>
+          <th>Nature of Accident</th>
+          <th>Accident Type</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      <tbody>
+        
+      </tbody>
+      </thead>
+      <tbody>
+        
+        <!-- Results will be injected here -->
+         
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Modal for viewing details -->
+<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="viewModalLabel">Incident Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      
+      <div class="modal-body" id="modalBody">
+        <!-- Details will be injected here -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-success" id="downloadBtn">Download Report</button>
+        <button class="btn btn-warning" id="editBtn">Edit Report</button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// Show/hide filter input based on dropdown selection
+function showMainFilterInput(type) {
+  document.getElementById('filterInputDate').classList.add('d-none');
+  document.getElementById('filterInputMonthYear').classList.add('d-none');
+  document.getElementById('filterInputYear').classList.add('d-none');
+  document.getElementById('filterInputPerson').classList.add('d-none');
+  document.getElementById('filterInputIncident').classList.add('d-none');
+  document.getElementById('filterInputLocation').classList.add('d-none');
+  document.getElementById('filterInputAccidentType').classList.add('d-none');
+  document.getElementById('filterInputStatus').classList.add('d-none');
+  if (type === 'date') {
+    document.getElementById('filterInputDate').classList.remove('d-none');
+  } else if (type === 'month_year') {
+    document.getElementById('filterInputMonthYear').classList.remove('d-none');
+  } else if (type === 'year') {
+    document.getElementById('filterInputYear').classList.remove('d-none');
+  } else if (type === 'search_person') {
+    document.getElementById('filterInputPerson').classList.remove('d-none');
+  } else if (type === 'incident') {
+    document.getElementById('filterInputIncident').classList.remove('d-none');
+  } else if (type === 'incident_location') {
+    document.getElementById('filterInputLocation').classList.remove('d-none');
+  } else if (type === 'accidentType') {
+    document.getElementById('filterInputAccidentType').classList.remove('d-none');
+  } else if (type === 'status') {
+    document.getElementById('filterInputStatus').classList.remove('d-none');
+  }
+}
+document.getElementById('mainFilterType').addEventListener('change', function() {
+  showMainFilterInput(this.value);
+});
+// Initialize default to 'search_person'
+showMainFilterInput('search_person');
+</script>
+<script>
+// Example: Fetch data from server (replace with AJAX/PHP backend)
+function fetchResults(filters) {
+  // This should be replaced with AJAX to PHP backend
+  // For demo, using static data
+  return [
+    {
+      id: 1,
+      date: "2025-08-01",
+      name: "John Doe",
+      empid: "EMP001",
+      department: "HR",
+      incident: "Minor Injury",
+      accidentType: "Abrasion",
+      status: "Closed"
+    },
+    {
+      id: 2,
+      date: "2025-07-15",
+      name: "Jane Smith",
+      empid: "EMP002",
+      department: "Production",
+      incident: "Lost Time Injury",
+      accidentType: "Crush/Impact/Compress",
+      status: "Open"
+    }
+  ];
+}
+
+function renderResults(data) {
+  const tbody = document.querySelector('#resultsTable tbody');
+  tbody.innerHTML = "";
+  if (data.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="8" class="text-center">No results found.</td></tr>';
+    return;
+  }
+  data.forEach(row => {
+    tbody.innerHTML += `
+      <tr>
+        <td>${row.date}</td>
+        <td>${row.name}</td>
+        <td>${row.empid}</td>
+        <td>${row.department}</td>
+        <td>${row.incident}</td>
+        <td>${row.accidentType}</td>
+        <td>${row.status}</td>
+        <td>
+          <button class="btn btn-info btn-sm" onclick="viewDetails(${row.id})">View</button>
+        </td>
+      </tr>
+    `;
+  });
+}
+
+// On form submit
+//  document.getElementById('searchForm').addEventListener('submit', function(e) {
+//   e.preventDefault();
+//   // Collect filters
+//   const formData = new FormData(e.target);
+//   const filters = Object.fromEntries(formData.entries());
+//   // Fetch and render results
+//   const results = fetchResults(filters); // Replace with AJAX
+//   renderResults(results);
+// });
+
+// View details modal
+function viewDetails(id) {
+
+  // Fetch details from server (replace with AJAX)
+  // For demo, static details
+
+  const details = {
+    id: id,
+    date: "2025-08-01",
+    name: "John Doe",
+    empid: "EMP001",
+    department: "HR",
+    incident: "Minor Injury",
+    accidentType: "Abrasion",
+    status: "Closed",
+    incident_location: "Press Shop",
+    machine: "Press Machine",
+    manager: "Mr. Manager",
+    shift: "A",
+    why_problem: "Slippery floor",
+    whyReason1: "Oil spill",
+    whyReason2: "No warning sign",
+    whyReason3: "Delayed cleaning",
+    whyReason4: "No PPE",
+    whyReason5: "Lack of training"
+  };
+  let html = `<table class='table table-bordered'>
+    <tr><th>Date</th><td>${details.date}</td></tr>
+    <tr><th>Name</th><td>${details.name}</td></tr>
+    <tr><th>Employee ID</th><td>${details.empid}</td></tr>
+    <tr><th>Department</th><td>${details.department}</td></tr>
+    <tr><th>Nature of Accident</th><td>${details.incident}</td></tr>
+    <tr><th>Accident Type</th><td>${details.accidentType}</td></tr>
+    <tr><th>Status</th><td>${details.status}</td></tr>
+    <tr><th>Incident Location</th><td>${details.incident_location}</td></tr>
+    <tr><th>Machine</th><td>${details.machine}</td></tr>
+    <tr><th>Manager</th><td>${details.manager}</td></tr>
+    <tr><th>Shift</th><td>${details.shift}</td></tr>
+    <tr><th>5 Why Problem</th><td>${details.why_problem}</td></tr>
+    <tr><th>Why 1</th><td>${details.whyReason1}</td></tr>
+    <tr><th>Why 2</th><td>${details.whyReason2}</td></tr>
+    <tr><th>Why 3</th><td>${details.whyReason3}</td></tr>
+    <tr><th>Why 4</th><td>${details.whyReason4}</td></tr>
+    <tr><th>Why 5</th><td>${details.whyReason5}</td></tr>
+  </table>`;
+  document.getElementById('modalBody').innerHTML = html;
+  new bootstrap.Modal(document.getElementById('viewModal')).show();
+}
+
+// Download report
+document.getElementById('downloadBtn').onclick = function () {
+  // Get only the table from modalBody to avoid copying buttons
+  const tableContent = document.querySelector('#modalBody table').outerHTML;
+
+  // Open new window
+  const printWindow = window.open('', '', 'width=900,height=700');
+
+  // Write the printable content
+  printWindow.document.write('<html><head><title>Incident Report</title><style>body{font-family:Arial,sans-serif;padding:20px;}table{width:100%;border-collapse:collapse;}th,td{border:1px solid #000;padding:8px;text-align:left;}h2{text-align:center;margin-bottom:20px;}</style></head><body><h2>Incident Report</h2>' + tableContent + '<script>window.onload=function(){window.print();window.onafterprint=function(){window.close();};};<\/script></body></html>');
+  printWindow.document.close();
+};
+
+
+
+// Edit report (redirect to edit page)
+ document.getElementById('editBtn').onclick = function() {
+  alert('Edit functionality to be implemented.');
+  // window.location.href = 'edit.html?id=' + ...;
+};
+</script>
+</body>
+</html>

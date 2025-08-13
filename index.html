@@ -20,7 +20,7 @@
         margin: 40px !important;
       }
      
-      #incidentForm{
+       #incidentForm{
         text-align: center;
       }
    
@@ -47,7 +47,7 @@
       }
       #why5AnalysisArea{
         display: none;
-      }
+      } 
 
 
      
@@ -55,14 +55,24 @@
 
     
   
-   
+   @media print {
+  .table {
+    width: 100% !important;
+    font-size: 12px !important;
+  }
+  .card {
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
   </style>
 </head>
 <body >
   <div class="container mt-5" id="mainFormSection">
     
     <div class="d-flex justify-content-between align-items-center mt-3">
-      <a href="search.html"><button type="button" class="btn btn-primary px-4">Search</button></a>
+      <a href="search2.php"><button type="button" class="btn btn-primary px-4">Search</button></a>
       <a href="CountermeasureForm.html"><button type="button" class="btn btn-primary px-4">Open Countermeasure Form</button></a>
     </div>
     <hr>
@@ -247,98 +257,94 @@
 
         <div class="row">
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Biological Exposure</label>
+                  <input class="form-check-input" type="radio" name="accidentType" id="bioExposure" value="Biological Exposure" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="bioExposure">Biological Exposure</label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Electrical Shock</label>
+                  <input class="form-check-input" type="radio" name="accidentType" id="electricalShock" value="Electrical Shock" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="electricalShock">Electrical Shock</label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Abrasion</label>
+                  <input class="form-check-input" type="radio" name="accidentType" id="abrasion" value="Abrasion" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="abrasion">Abrasion</label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Suffocation</label>
+                  <input class="form-check-input" type="radio" name="accidentType" id="suffocation" value="Suffocation" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="suffocation">Suffocation</label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Chemical Exposure</label>
+                  <input class="form-check-input" type="radio" name="accidentType" id="chemicalExposure" value="Chemical Exposure" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="chemicalExposure">Chemical Exposure</label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Chemical Spill</label>
+<input class="form-check-input" type="radio" name="accidentType" id="chemicalSpill" value="Chemical Spill" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="chemicalSpill">Chemical Spill</label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Impulse Noise</label>
+                  <input class="form-check-input" type="radio" name="accidentType" id="impulseNoise" value="Impulse Noise" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="impulseNoise">Impulse Noise</label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Crush/Impact/Compress</label>
+                  <input class="form-check-input" type="radio" name="accidentType" id="crushImpact" value="Crush/Impact/Compress" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="crushImpact">Crush/Impact/Compress</label>
+          </div>
+
+
+          <div class=" mb-2 form-check-inline col-3">
+                  <input class="form-check-input" type="radio" name="accidentType" id="bioSpill" value="Biological Spill" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="bioSpill">Biological Spill </label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Crush/Impact/Compress</label>
+                  <input class="form-check-input" type="radio" name="accidentType" id="foodPoisoning" value="Food Poisoning" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="foodPoisoning">Food poisoning </label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Biological Spill </label>
-          </div>
-
-          <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Food poisoning </label>
-          </div>
-
-          <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Impulse Noise </label>
+                  <input class="form-check-input" type="radio" name="accidentType" id="impulseNoise" value="Impulse Noise" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="impulseNoise">Impulse Noise </label>
           </div>
           
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Crush/Impact/Compress </label>
+                 <input class="form-check-input" type="radio" name="accidentType" id="crushImpact" value="Crush/Impact/Compress" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="crushImpact">Crush/Impact/Compress </label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Arson </label>
+                 <input class="form-check-input" type="radio" name="accidentType" id="arson" value="Arson" onclick="hideAllExtraFields()">
+                <label class="form-check-label" for="arson">Arson</label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Fall/Flying/Falling </label>
+                <input class="form-check-input" type="radio" name="accidentType" id="fallFlying" value="Fall/Flying/Falling" onclick="hideAllExtraFields()">
+                <label class="form-check-label" for="fallFlying">Fall/Flying/Falling</label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Heat Illness </label>
+                  <input class="form-check-input" type="radio" name="accidentType" id="heatIllness" value="Heat Illness" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="heatIllness">Heat Illness </label>
           </div>
 
           <div class=" mb-2 form-check-inline col-3">
-                  <input class="form-check-input" type="radio" name="accidentType" id="" value="" onclick="hideAllExtraFields()">
-                  <label class="form-check-label" for="">Pinch </label>
+                  <input class="form-check-input" type="radio" name="accidentType" id="pinch" value="Pinch" onclick="hideAllExtraFields()">
+                  <label class="form-check-label" for="pinch">Pinch </label>
           </div>
 
           <div class="col-md-4 d-flex align-items-center mb-2">
-              <input type="radio" class="form-check-input me-2" name="accidentType" value="Fire" onclick="showFireSection()">
-              <label class="form-check-label">Fire</label>
+              <input type="radio" class="form-check-input me-2" name="accidentType" id="fire" value="Fire" onclick="showFireSection()">
+              <label class="form-check-label" for="fire">Fire</label>
           </div>
 
           <div class="col-md-4 d-flex align-items-center mb-2">
-              <input type="radio" class="form-check-input me-2" name="accidentType" value="Other" onclick="showOtherComment()">
-              <label class="form-check-label">Other</label>
+              <input type="radio" class="form-check-input me-2" name="accidentType" id="otherAccidentType" value="Other" onclick="showOtherComment()">
+              <label class="form-check-label " for="otherAccidentType">Other</label>
           </div>
         </div>
       </div>
@@ -582,13 +588,9 @@
           </div>
 
           <div class="text-end mt-3">
-            <button type="submit" onclick="finalSubmit()" class="btn btn-success mt-4">Submit</button>
+            <button type="button" onclick="finalSubmit()" class="btn btn-success mt-4">Preview</button>
           </div>
-           <select name="department" id="">
-        <option value="HR">HR</option>
-      </select>
-
-      <input type="submit" value="Submit Now">
+           
 
    </form>
         </div>
@@ -606,9 +608,9 @@
     <div class="card-body">
       <div id="previewContent"></div>
       <div class="text-center mt-4">
-        <button class="btn btn-warning mx-2" onclick="editForm()">Edit</button>
-        <button class="btn btn-info mx-2" onclick="downloadPreview()">Download</button>
-        <button class="btn btn-success mx-2" onclick="finalSubmitConfirm()">Final Submit</button>
+          <button class="btn btn-warning mx-2" onclick="editForm()">Edit</button>
+          <button class="btn btn-info mx-2" onclick="downloadPreview()">Download</button>
+          <button class="btn btn-success mx-2" onclick="finalSubmitConfirm()">Final Submit</button>
       </div>
     </div>
   </div>
@@ -1120,10 +1122,152 @@ document.addEventListener("DOMContentLoaded", function () {
 <script>
 function finalSubmit() {
   // Gather all data from your variables
+  // Always read latest values from form fields
+  let whyReasons = [
+    document.getElementsByName('whyReason1')[0]?.value,
+    document.getElementsByName('whyReason2')[0]?.value,
+    document.getElementsByName('whyReason3')[0]?.value,
+    document.getElementsByName('whyReason4')[0]?.value,
+    document.getElementsByName('whyReason5')[0]?.value
+  ].filter(Boolean).join('<br>');
+  let employeeName = document.getElementById('name')?.value || '';
+  let employeeId = document.getElementById('empId')?.value || '';
+  let employeeGender = document.querySelector('input[name="gender"]:checked')?.value || '';
+  let department = document.getElementById('empDepartment')?.value || '';
+  let contactName = document.getElementById('contactName')?.value || '';
+  let shiftLeader = document.getElementById('ShiftLeader')?.value || '';
+  let plantLocation = document.querySelector('input[name="plant"]:checked')?.value || '';
+  let locationSelect = document.getElementById('location');
+  let locationInput = document.getElementById('otherDepartment');
+  let incidentLocation = '';
+  if (locationSelect?.value === 'Other') {
+    incidentLocation = locationInput?.value || '';
+  } else {
+    incidentLocation = locationSelect?.value || '';
+  }
+  let machineName = document.getElementById('machine')?.value || '';
+  let managerName = document.getElementById('Manager')?.value || '';
+  let shiftType = document.getElementById('shift')?.value || '';
+
+  // Always read latest values from form fields and fallback if variables are blank
+  // Always read latest Accident Type from form
+  let accidentTypeValuePreview = "";
+  const selectedAccidentRadio = document.querySelector('input[name="accidentType"]:checked');
+  if (selectedAccidentRadio) {
+    if (selectedAccidentRadio.value === "Fire") {
+      const selectedFireClass = document.querySelector('input[name="fireClass"]:checked');
+      if (selectedFireClass) {
+        accidentTypeValuePreview = "Fire - Class " + selectedFireClass.value;
+      } else {
+        accidentTypeValuePreview = "Fire";
+      }
+    } else if (selectedAccidentRadio.value === "Other") {
+      const otherText = document.getElementById("otherComment")?.value.trim();
+      accidentTypeValuePreview = otherText ? ("Other - " + otherText) : "Other";
+    } else {
+      accidentTypeValuePreview = selectedAccidentRadio.value;
+    }
+  } else {
+    accidentTypeValuePreview = "Not specified";
+  }
+
+  let affectedBodyPartValuePreview = affectedBodyPartValue;
+  if (!affectedBodyPartValuePreview) {
+    const selectedBodyPartInput = document.querySelector('input[name="bodyPart"]:checked');
+    if (selectedBodyPartInput) {
+      if (selectedBodyPartInput.value === "Other") {
+        affectedBodyPartValuePreview = document.getElementById("otherBodyPart")?.value.trim() || "";
+      } else {
+        affectedBodyPartValuePreview = selectedBodyPartInput.value;
+      }
+    }
+  }
+
+  let ppeUsedValuePreview = ppeUsedValue;
+  let ppeDescriptionPreview = ppeDescription;
+  if (!ppeUsedValuePreview) {
+    const selectedPpeRadio = document.querySelector('input[name="ppe"]:checked');
+    if (selectedPpeRadio) {
+      ppeUsedValuePreview = selectedPpeRadio.value;
+      ppeDescriptionPreview = document.getElementById("ppeText")?.value.trim() || "";
+    } else {
+      ppeUsedValuePreview = "Not specified";
+      ppeDescriptionPreview = "";
+    }
+  }
+
+  let medicalTreatmentLocationsPreview = medicalTreatmentLocations;
+  let externalHospitalDetailsPreview = externalHospitalDetails;
+  if (!medicalTreatmentLocationsPreview || medicalTreatmentLocationsPreview.length === 0) {
+    medicalTreatmentLocationsPreview = [];
+    const inhouse = document.getElementById("treatmentInhouse");
+    const external = document.getElementById("treatmentExternal");
+    if (inhouse?.checked) medicalTreatmentLocationsPreview.push(inhouse.value);
+    if (external?.checked) {
+      medicalTreatmentLocationsPreview.push(external.value);
+      externalHospitalDetailsPreview = document.getElementById("hospitalDetails")?.value.trim() || "";
+    }
+  }
+  // Format medical treatment for readability
+  let medicalTreatmentDisplay = "";
+  if (medicalTreatmentLocationsPreview.length > 0) {
+    medicalTreatmentDisplay = medicalTreatmentLocationsPreview.join(", ");
+    if (externalHospitalDetailsPreview) {
+      medicalTreatmentDisplay += "<br><span style='color:#555;font-size:smaller;'>" + externalHospitalDetailsPreview + "</span>";
+    }
+  } else {
+    medicalTreatmentDisplay = "Not specified";
+  }
+
+  let immediateContainmentActionPreview = immediateContainmentAction;
+  if (!immediateContainmentActionPreview) {
+    immediateContainmentActionPreview = document.querySelector('#ITCActionArea textarea')?.value || '';
+  }
+
+  // Incident Type fallback: always read latest selected value
+  let incidentTypePreview = "";
+  if (document.getElementById('incidentType')?.value) {
+    incidentTypePreview = document.getElementById('incidentType').value;
+  } else {
+    const selectedIncidentRadio = document.querySelector('input[name="incident"]:checked');
+    if (selectedIncidentRadio) {
+      incidentTypePreview = selectedIncidentRadio.value;
+    } else {
+      incidentTypePreview = "Not specified";
+    }
+  }
+
+  // Accident Type fallback: always read latest selected value
+  // Accident Type fallback: always read latest selected value
+const selectedAccidentRadioPreview = document.querySelector('input[name="accidentType"]:checked');
+if (selectedAccidentRadioPreview) {
+    if (selectedAccidentRadioPreview.value === "Fire") {
+        const selectedFireClassPreview = document.querySelector('input[name="fireClass"]:checked');
+        if (selectedFireClassPreview) {
+            accidentTypeValuePreview = "Fire - Class " + selectedFireClassPreview.value;
+        } else {
+            accidentTypeValuePreview = "Fire";
+        }
+    } else if (selectedAccidentRadioPreview.value === "Other") {
+        const otherTextPreview = document.getElementById("otherComment")?.value.trim();
+        accidentTypeValuePreview = otherTextPreview && otherTextPreview.length > 0 ? ("Other - " + otherTextPreview) : "Other";
+    } else {
+        // For all other accident types, use the label text next to the radio button
+        const label = selectedAccidentRadioPreview.nextElementSibling;
+        if (label && label.textContent.trim().length > 0) {
+            accidentTypeValuePreview = label.textContent.trim();
+        } else {
+            accidentTypeValuePreview = selectedAccidentRadioPreview.value;
+        }
+    }
+} else {
+    accidentTypeValuePreview = "Not specified";
+}
+
   let previewHTML = `
     <table class="table table-bordered">
       <tbody>
-        <tr><th>Incident Type</th><td>${document.getElementById('incidentType').value}</td></tr>
+        <tr><th>Incident Type</th><td>${incidentTypePreview}</td></tr>
         <tr><th>Date</th><td>${document.getElementById('dateInput').value}</td></tr>
         <tr><th>Time</th><td>${document.getElementById('timeInput').value}</td></tr>
         <tr><th>Employee Name</th><td>${employeeName}</td></tr>
@@ -1137,15 +1281,13 @@ function finalSubmit() {
         <tr><th>Machine</th><td>${machineName}</td></tr>
         <tr><th>Manager</th><td>${managerName}</td></tr>
         <tr><th>Shift</th><td>${shiftType}</td></tr>
-        <tr><th>Accident Type</th><td>${accidentTypeValue}</td></tr>
-        <tr><th>Affected Body Part</th><td>${affectedBodyPartValue}</td></tr>
-        <tr><th>PPE Used</th><td>${ppeUsedValue} (${ppeDescription})</td></tr>
-        <tr><th>Medical Treatment</th><td>${medicalTreatmentLocations.join(", ")} ${externalHospitalDetails ? '('+externalHospitalDetails+')' : ''}</td></tr>
-        <tr><th>Immediate Containment Action</th><td>${immediateContainmentAction}</td></tr>
+        <tr><th>Accident Type</th><td>${accidentTypeValuePreview}</td></tr>
+        <tr><th>Affected Body Part</th><td>${affectedBodyPartValuePreview}</td></tr>
+        <tr><th>PPE Used</th><td>${ppeUsedValuePreview}${ppeDescriptionPreview ? ("<br><span style='color:#555;font-size:smaller;'>"+ppeDescriptionPreview+"</span>") : ""}</td></tr>
+        <tr><th>Medical Treatment</th><td>${medicalTreatmentDisplay}</td></tr>
+        <tr><th>Immediate Containment Action</th><td>${immediateContainmentActionPreview}</td></tr>
         <tr><th>5 Why Problem</th><td>${document.getElementById('whyProblem').value}</td></tr>
-        <tr><th>5 Why Reasons</th><td>${
-          Array.from(document.getElementsByName('whyReason[]')).map(i=>i.value).filter(Boolean).join('<br>')
-        }</td></tr>
+        <tr><th>5 Why Reasons</th><td>${whyReasons}</td></tr>
       </tbody>
     </table>
   `;
@@ -1163,9 +1305,9 @@ function editForm() {
 
 // Download button: download preview as PDF
 function downloadPreview() {
-  const element = document.getElementById('previewSection');
+  const element = document.getElementById('previewContent'); // Use only the content
   html2pdf().from(element).set({
-    margin: 10,
+    margin: 5, // Reduce margin
     filename: 'incident-preview.pdf',
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: { scale: 2 },
@@ -1175,8 +1317,48 @@ function downloadPreview() {
 
 // Final Submit button: show confirmation and reset
 function finalSubmitConfirm() {
-  alert("Form submitted successfully!");
-  location.reload(); // Or reset form as needed
+  // Gather all data
+  const formData = new FormData();
+  formData.append('incidentType', document.getElementById('incidentType').value);
+  formData.append('date', document.getElementById('dateInput').value);
+  formData.append('time', document.getElementById('timeInput').value);
+  formData.append('name', employeeName);
+  formData.append('empid', employeeId);
+  formData.append('gender', employeeGender);
+  formData.append('department', department);
+  formData.append('contact_name', contactName);
+  formData.append('shift_leader', shiftLeader);
+  formData.append('plant', plantLocation);
+  formData.append('incident_location', incidentLocation);
+  formData.append('machine', machineName);
+  formData.append('manager', managerName);
+  formData.append('shift', shiftType);
+  formData.append('accidentType', accidentTypeValue);
+  formData.append('bodyPart', affectedBodyPartValue);
+  formData.append('ppe', ppeUsedValue);
+  formData.append('ppe_text', ppeDescription);
+  formData.append('medicalTreatment', medicalTreatmentLocations.join(", "));
+  formData.append('hospital_details', externalHospitalDetails);
+  formData.append('containment_action', immediateContainmentAction);
+  formData.append('why_problem', document.getElementById('whyProblem').value);
+  formData.append('whyReason1', document.getElementsByName('whyReason1')[0]?.value || "");
+  formData.append('whyReason2', document.getElementsByName('whyReason2')[0]?.value || "");
+  formData.append('whyReason3', document.getElementsByName('whyReason3')[0]?.value || "");
+  formData.append('whyReason4', document.getElementsByName('whyReason4')[0]?.value || "");
+  formData.append('whyReason5', document.getElementsByName('whyReason5')[0]?.value || "");
+
+  fetch('submit.php', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.text())
+  .then(data => {
+    alert("Form submitted successfully!");
+    location.reload();
+  })
+  .catch(error => {
+    alert("Submission failed. Please try again.");
+  });
 }
 </script>
 </body>

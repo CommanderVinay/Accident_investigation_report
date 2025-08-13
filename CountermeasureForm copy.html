@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countermeasure Form with PDF Preview</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    /* Fix table cell text wrapping and input/textarea overflow */
+    .table th {
+      white-space: nowrap;
+      font-size: 15px;
+    }
+    .table td {
+      word-break: normal;
+      white-space: normal;
+      vertical-align: middle;
+    }
+    .table td .form-control,
+    .table td textarea.form-control {
+      width: 100%;
+      min-width: 80px;
+      box-sizing: border-box;
+      font-size: 14px;
+      padding: 0.4rem 0.5rem;
+    }
+    @media (max-width: 576px) {
+      .table th, .table td {
+        font-size: 12px !important;
+        padding: 0.3rem 0.2rem;
+        min-width: 90px;
+      }
+      .table td .form-control,
+      .table td textarea.form-control {
+        font-size: 12px !important;
+        padding: 0.28rem 0.3rem;
+        min-width: 70px;
+      }
+      .table-responsive {
+        overflow-x: auto;
+      }
+    }
+    body {
+      padding: 20px;
+      font-size: 14px;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .table td, .table th {
+      vertical-align: middle;
+    }
+    .signature-line {
+      border-top: 1px solid #000;
+      margin-top: 30px;
+      height: 2em;
+    }
+    .preview-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .preview-box {
+      width: 100%;
+      max-width: 300px;
+      flex: 1 1 45%;
+      border: 1px solid #ccc;
+      padding: 10px;
+      display: none;
+    }
+    .preview-box img,
+    .preview-box iframe {
+      width: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: contain;
+      display: block;
+    }
+    .no-print {
+      display: block;
+    }
+    #downloadBtn,#goBackBtn{
+        text-align: center;
+    }
+    /* Responsive table for mobile */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    @media (max-width: 576px) {
+      body {
+        padding: 5px;
+      }
+      .container {
+        padding: 0 2px !important;
+      }
+      .preview-container {
+        flex-direction: column;
+        gap: 0;
+      }
+      .preview-box {
+        max-width: 100%;
+        flex: 1 1 100%;
+        border: 1px solid #ccc;
+        margin-bottom: 10px;
+      }
+      .card {
+        margin-bottom: 10px;
+      }
+      .table-responsive {
+        margin-bottom: 10px;
+      }
+    }
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Main Form Section -->
+  <div class="container mt-5" id="mainFormSection">
+    <form id="countermeasureForm">
+      <div class="card shadow">
+        <div class="card-header bg-dark text-white card1">
+          <h4>Countermeasure Form</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table class="table table-bordered mb-0">
+              <thead>
+                <tr>
+                  <th>Countermeasure</th>
+                  <th>Action</th>
+                  <th>Responsibility</th>
+                  <th>Status / Target Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Countermeasure 2 (Permanent)</strong></td>
+                  <td><textarea class="form-control" rows="3" name="action2" placeholder="Describe responsibility..."></textarea></td>
+                  <td><input type="text" class="form-control" name="responsibility2" placeholder="Department / Person"></td>
+                  <td><input type="text" class="form-control" name="status2" placeholder="Status or Target Date"></td>
+                </tr>
+                <tr>
+                  <td><strong>Countermeasure 3 (Horizontal Deployment)</strong></td>
+                  <td><textarea class="form-control" rows="3" name="action3"></textarea></td>
+                  <td><input type="text" class="form-control" name="responsibility3"></td>
+                  <td><input type="text" class="form-control" name="status3"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="card shadow mt-5">
+        <div class="card-header bg-dark text-white card1">
+          <h3 class="mb-4">Upload Before & After Documents</h3>
+        </div>
+        <div class="card-body">
+          <div class="mb-3">
+            <label for="beforeDoc" class="form-label fw-bold">Upload Before Document</label>
+            <input type="file" class="form-control" id="beforeDoc" accept="image/*,application/pdf" onchange="previewFile(this, 'beforePreview')">
+          </div>
+          <div class="mb-3">
+            <label for="afterDoc" class="form-label fw-bold">Upload After Document</label>
+            <input type="file" class="form-control" id="afterDoc" accept="image/*,application/pdf" onchange="previewFile(this, 'afterPreview')">
+          </div>
+          <div class="preview-container">
+            <div class="preview-box">
+              <label class="form-label fw-bold">Before Document Preview</label>
+              <div id="beforePreview"></div>
+            </div>
+            <div class="preview-box">
+              <label class="form-label fw-bold">After Document Preview</label>
+              <div id="afterPreview"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card shadow mt-5 " id="basicQuestion">
+        <div class="card-body">
+          <div class="mb-3">
+            <label class="form-label">Whether SOP has been revised after injury?</label><br>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="sopRevised" class="form-check-input" id="sopYes" value="Yes">
+              <label class="form-check-label" for="sopYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="sopRevised" class="form-check-input" id="sopNo" value="No">
+              <label class="form-check-label" for="sopNo">No</label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Whether on-job re-training given after injury?</label><br>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="retraining" class="form-check-input" id="retrainYes" value="Yes">
+              <label class="form-check-label" for="retrainYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="retraining" class="form-check-input" id="retrainNo" value="No">
+              <label class="form-check-label" for="retrainNo">No</label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Cause of injury / precaution included in HIRA?</label><br>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="causeIncluded" class="form-check-input" id="causeYes" value="Yes">
+              <label class="form-check-label" for="causeYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="causeIncluded" class="form-check-input" id="causeNo" value="No">
+              <label class="form-check-label" for="causeNo">No</label>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">If not, then implemented in HIRA?</label><br>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="implementedHira" class="form-check-input" id="implYes" value="Yes">
+              <label class="form-check-label" for="implYes">Yes</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input type="radio" name="implementedHira" class="form-check-input" id="implNo" value="No">
+              <label class="form-check-label" for="implNo">No</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="d-flex justify-content-between  gap-2 mt-3 px-2">
+        <button type="submit" class="btn btn-success no-print">Submit</button>
+        <a href="index.html" class="btn btn-primary px-4">Go back to home</a>
+      </div>
+    </form>
+  </div>
+
+  <!-- Preview Section (hidden by default) -->
+  <div class="container mt-5 d-none" id="previewSection">
+    <div class="card shadow">
+      <div class="card-header bg-dark text-white card1">
+        <h4>Countermeasure Form Preview</h4>
+      </div>
+      <div class="card-body" id="previewContent">
+        <!-- Populated by JS -->
+      </div>
+      <div class="text-center mt-3 d-flex">
+        <button id="downloadBtn" onclick="downloadPDF()" class="btn btn-success mt-4 mx-2 d-f no-print ">Download PDF</button>
+        <button id="goBackBtn" onclick="goBackToForm()" class="btn btn-secondary mt-4 mx-2 no-print">Back to Form</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // File preview logic
+    function previewFile(input, previewId) {
+      const previewDiv = document.getElementById(previewId);
+      previewDiv.innerHTML = "";
+
+      // Show the correct preview box
+      if (previewId === 'beforePreview') {
+        previewDiv.closest('.preview-box').style.display = 'block';
+      } else if (previewId === 'afterPreview') {
+        previewDiv.closest('.preview-box').style.display = 'block';
+      }
+
+      const file = input.files[0];
+      if (file) {
+        const fileURL = URL.createObjectURL(file);
+        const fileType = file.type;
+
+        if (fileType.startsWith("image/")) {
+          const img = document.createElement("img");
+          img.src = fileURL;
+          previewDiv.appendChild(img);
+        } else if (fileType === "application/pdf") {
+          const iframe = document.createElement("iframe");
+          iframe.src = fileURL;
+          iframe.width = "100%";
+          iframe.height = "200px";
+          previewDiv.appendChild(iframe);
+        } else {
+          previewDiv.textContent = "Unsupported file format";
+        }
+      }
+    }
+
+    // Form submit and preview logic
+    document.getElementById('countermeasureForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Gather form data
+      const form = e.target;
+      const action2 = form.action2.value.trim();
+      const responsibility2 = form.responsibility2.value.trim();
+      const status2 = form.status2.value.trim();
+      const action3 = form.action3.value.trim();
+      const responsibility3 = form.responsibility3.value.trim();
+      const status3 = form.status3.value.trim();
+
+      const sopRevised = form.sopRevised.value || '';
+      const retraining = form.retraining.value || '';
+      const causeIncluded = form.causeIncluded.value || '';
+      const implementedHira = form.implementedHira.value || '';
+
+      // File previews (images or pdfs)
+      const beforeDoc = document.getElementById('beforeDoc').files[0];
+      const afterDoc = document.getElementById('afterDoc').files[0];
+
+      // Build preview HTML
+      let previewHTML = `
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Countermeasure</th>
+              <th>Action</th>
+              <th>Responsibility</th>
+              <th>Status / Target Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Countermeasure 2 (Permanent)</strong></td>
+              <td>${action2}</td>
+              <td>${responsibility2}</td>
+              <td>${status2}</td>
+            </tr>
+            <tr>
+              <td><strong>Countermeasure 3 (Horizontal Deployment)</strong></td>
+              <td>${action3}</td>
+              <td>${responsibility3}</td>
+              <td>${status3}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="mt-4">Uploaded Documents</h5>
+        <div class="row">
+          <div class="col-md-6">
+            <label class="form-label fw-bold">Before Document Preview</label>
+            <div id="previewBeforeDoc"></div>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label fw-bold">After Document Preview</label>
+            <div id="previewAfterDoc"></div>
+          </div>
+        </div>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <th>Whether SOP has been revised after injury?</th>
+              <td>${sopRevised}</td>
+            </tr>
+            <tr>
+              <th>Whether on-job re-training given after injury?</th>
+              <td>${retraining}</td>
+            </tr>
+            <tr>
+              <th>Cause of injury / precaution included in HIRA?</th>
+              <td>${causeIncluded}</td>
+            </tr>
+            <tr>
+              <th>If not, then implemented in HIRA?</th>
+              <td>${implementedHira}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="mt-4">Signatures</h5>
+        <div class="row">
+          <div class="col-md-2">
+            <label>Prepared by</label>
+            <div class="signature-line"></div>
+          </div>
+          <div class="col-md-2">
+            <label>HOD</label>
+            <div class="signature-line"></div>
+          </div>
+          <div class="col-md-2">
+            <label>Safety Officer</label>
+            <div class="signature-line"></div>
+          </div>
+          <div class="col-md-2">
+            <label>Head HR</label>
+            <div class="signature-line"></div>
+          </div>
+          <div class="col-md-2">
+            <label>Plant Head</label>
+            <div class="signature-line"></div>
+          </div>
+        </div>
+      `;
+
+      // Hide form, show preview
+      document.getElementById('mainFormSection').classList.add('d-none');
+      document.getElementById('previewSection').classList.remove('d-none');
+      document.getElementById('previewContent').innerHTML = previewHTML;
+
+      // Show file previews in preview section
+      if (beforeDoc) {
+        const fileType = beforeDoc.type;
+        const fileURL = URL.createObjectURL(beforeDoc);
+        if (fileType.startsWith("image/")) {
+          document.getElementById('previewBeforeDoc').innerHTML = `<img src="${fileURL}" style="max-width:100%;max-height:200px;">`;
+        } else if (fileType === "application/pdf") {
+          document.getElementById('previewBeforeDoc').innerHTML = `<iframe src="${fileURL}" width="100%" height="200px"></iframe>`;
+        } else {
+          document.getElementById('previewBeforeDoc').innerText = "Unsupported file format";
+        }
+      }
+      if (afterDoc) {
+        const fileType = afterDoc.type;
+        const fileURL = URL.createObjectURL(afterDoc);
+        if (fileType.startsWith("image/")) {
+          document.getElementById('previewAfterDoc').innerHTML = `<img src="${fileURL}" style="max-width:100%;max-height:200px;">`;
+        } else if (fileType === "application/pdf") {
+          document.getElementById('previewAfterDoc').innerHTML = `<iframe src="${fileURL}" width="100%" height="200px"></iframe>`;
+        } else {
+          document.getElementById('previewAfterDoc').innerText = "Unsupported file format";
+        }
+      }
+    });
+
+    // PDF download logic
+    function downloadPDF() {
+      const element = document.querySelector('#previewSection .card');
+      const downloadBtn = document.getElementById('downloadBtn');
+      const goBackBtn = document.getElementById('goBackBtn');
+      downloadBtn.style.display = 'none';
+      goBackBtn.style.display = 'none';
+      html2pdf()
+        .from(element)
+        .set({
+          margin: 0,
+          filename: 'countermeasure-form-preview.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2 },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        })
+        .save()
+        .then(() => {
+          downloadBtn.style.display = 'block';
+          goBackBtn.style.display = 'block';
+        });
+    }
+
+    // Back to form logic
+    function goBackToForm() {
+      document.getElementById('previewSection').classList.add('d-none');
+      document.getElementById('mainFormSection').classList.remove('d-none');
+    }
+  </script>
+</body>
+</html>
